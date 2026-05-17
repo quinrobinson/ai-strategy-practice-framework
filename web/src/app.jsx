@@ -4,6 +4,7 @@ function App() {
   const [route, setRoute] = React.useState('home');
   const go = (r) => { setRoute(r); window.scrollTo({ top: 0, behavior: 'auto' }); };
 
+  if (route === 'start')   return <StartPage go={go} />;
   if (route === 'skills')  return <SkillsPage go={go} />;
   if (route === 'agents')  return <AgentsPage go={go} />;
   if (route === 'tree')    return <DecisionTreePage go={go} />;
