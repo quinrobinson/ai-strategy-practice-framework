@@ -143,13 +143,13 @@ function HomePage({ go }) {
           <div>
             <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-dim)', marginBottom: 20 }}>How it works</div>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.015em', marginBottom: 16 }}>
-              Claude is the framework.<br />Not a tool that runs it.
+              The framework is the methodology.<br />Claude is what runs it.
             </h2>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--fg-muted)', lineHeight: 1.7 }}>
-              Describe your situation. Claude detects where you are, activates the right perspective, routes you through the right questions, and flags risks before you hit them.
+              The framework defines the questions, the sequence, and the decision logic. Claude runs it — conversationally, adaptively, and without a preset path.
             </p>
             <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--fg-muted)', lineHeight: 1.7, marginTop: 12 }}>
-              No preset path. Every session adapts to your context.
+              Describe your situation. Claude detects where you are, activates the right perspective, and routes you to the right decision — every time.
             </p>
 
             <div style={{ marginTop: 32, display: 'flex', gap: 10 }}>

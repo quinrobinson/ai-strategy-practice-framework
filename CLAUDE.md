@@ -8,7 +8,7 @@ Read this file fully before taking any action in a session.
 
 ## What This Framework Is
 
-ASPF is a hybrid AI-assisted framework with three entry points and a continuous decision tree at its core. Claude is the decision tree — not a tool that helps you use the framework, but the engine that runs it.
+ASPF is a hybrid AI-assisted framework with three entry points and a continuous decision tree at its core. Claude runs the framework — it is the conversational engine that executes the decision tree, activates agents, routes skill files, and synthesizes outputs. The framework itself — the methodology, skill files, decision logic, and failure mode library — exists independently and evolves on its own terms.
 
 **Three entry points:**
 - **Before** — Should we use AI here, and how?

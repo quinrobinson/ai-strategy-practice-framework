@@ -11,7 +11,7 @@ A Claude-powered decision framework for product research, design, and delivery t
 
 Most AI initiatives fail for three reasons: teams start with tools instead of problems, they can't connect AI to business outcomes, and pilots never scale. ASPF fixes the sequence.
 
-Claude *is* the framework — not a tool that helps you use it, but the engine that runs it. You describe your situation. Claude runs a decision tree that diagnoses where you are, activates the right role agents, routes you through the right skills, and predicts failure modes before you encounter them.
+ASPF is the methodology — a decision framework with a defined structure, skill files, failure mode library, and three entry points. Claude runs it. You describe your situation. Claude runs a decision tree that diagnoses where you are, activates the right role agents, routes you through the right skills, and predicts failure modes before you encounter them.
 
 ---
 
