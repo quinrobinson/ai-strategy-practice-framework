@@ -2,6 +2,7 @@
 
 A Claude-powered decision framework for product research, design, and delivery teams navigating AI strategy decisions — before, during, and after every AI initiative.
 
+**Live site:** [quinrobinson.github.io/ai-strategy-practice-framework](https://quinrobinson.github.io/ai-strategy-practice-framework)
 **Companion to:** [Agentic Product Design Framework (APDF)](https://github.com/quinrobinson/Agentic-Product-Design-Framework) — ASPF is upstream. Strategy first, then design.
 
 ---
