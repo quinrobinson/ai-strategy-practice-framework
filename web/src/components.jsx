@@ -132,4 +132,19 @@ function Footer() {
   );
 }
 
-Object.assign(window, { Mark, Header, Page, Container, Eyebrow, Button, Tag, EntryTag, GradRule, Footer });
+function CopyButton({ text, color }) {
+  const [copied, setCopied] = React.useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+  return (
+    <button onClick={handleCopy} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '5px 12px', borderRadius: 4, border: `1px solid ${copied ? color : 'var(--border)'}`, background: copied ? `color-mix(in srgb, ${color || 'var(--fg)'} 12%, transparent)` : 'transparent', color: copied ? (color || 'var(--fg)') : 'var(--fg-muted)', cursor: 'pointer', transition: 'all 200ms' }}>
+      {copied ? 'Copied ✓' : 'Copy'}
+    </button>
+  );
+}
+
+Object.assign(window, { Mark, Header, Page, Container, Eyebrow, Button, Tag, EntryTag, GradRule, Footer, CopyButton });

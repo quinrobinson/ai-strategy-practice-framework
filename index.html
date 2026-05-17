@@ -554,7 +554,22 @@ function Footer() {
   );
 }
 
-Object.assign(window, { Mark, Header, Page, Container, Eyebrow, Button, Tag, EntryTag, GradRule, Footer });
+function CopyButton({ text, color }) {
+  const [copied, setCopied] = React.useState(false);
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+  return (
+    <button onClick={handleCopy} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '5px 12px', borderRadius: 4, border: `1px solid ${copied ? color : 'var(--border)'}`, background: copied ? `color-mix(in srgb, ${color || 'var(--fg)'} 12%, transparent)` : 'transparent', color: copied ? (color || 'var(--fg)') : 'var(--fg-muted)', cursor: 'pointer', transition: 'all 200ms' }}>
+      {copied ? 'Copied ✓' : 'Copy'}
+    </button>
+  );
+}
+
+Object.assign(window, { Mark, Header, Page, Container, Eyebrow, Button, Tag, EntryTag, GradRule, Footer, CopyButton });
 /* HomePage.jsx — Guided experience, not information distribution */
 
 function HomePage({ go }) {
@@ -814,6 +829,59 @@ function StartPage({ go, entry }) {
 
   const GHBase = 'https://github.com/quinrobinson/ai-strategy-practice-framework/blob/main/skills/';
 
+  // Copyable kickoff prompts per entry point — self-contained for Claude Chat
+  const chatPrompts = {
+    before: `You are running the AI Strategy Practice Framework (ASPF) — a decision framework for product research, design, and delivery teams navigating AI strategy decisions.
+
+My entry point is: BEFORE — I am starting a new AI initiative and need to work through whether and how to use AI.
+
+The ASPF Before sequence is:
+01 — problem-qualification: Is this worth solving with AI?
+02 — ai-method-selection: Which approach fits?
+03 — responsible-ai: What are our ethical obligations?
+04 — risk-mapping: What could go wrong?
+05 — outcome-definition: How will we know it worked?
+06 — readiness-audit: Are we ready to proceed?
+
+Start by asking me three context questions together:
+1. What domain or problem space is this in?
+2. What roles are on your team?
+3. What has already been decided or done, if anything?
+
+Then begin the problem-qualification skill. Work through one skill at a time. At the end of each skill, produce a structured output and ask if I am ready to move to the next step.`,
+
+    during: `You are running the AI Strategy Practice Framework (ASPF) — a decision framework for product research, design, and delivery teams navigating AI strategy decisions.
+
+My entry point is: DURING — I have an AI initiative underway and need to audit whether it is on track.
+
+The ASPF During sequence is:
+01 — mid-project-audit: Where has this drifted from the original intent?
+02 — model-monitoring: Is the AI system still performing correctly?
+03 — user-feedback-loops: What are users actually experiencing?
+
+Start by asking me three context questions together:
+1. What is the AI system currently doing?
+2. What were you expecting at this stage?
+3. What prompted this check-in right now?
+
+Then begin the mid-project-audit skill. At the end, produce a clear Continue / Pivot / Stop recommendation with owned actions.`,
+
+    after: `You are running the AI Strategy Practice Framework (ASPF) — a decision framework for product research, design, and delivery teams navigating AI strategy decisions.
+
+My entry point is: AFTER — An AI initiative has concluded and I want to evaluate what happened and learn from it.
+
+The ASPF After sequence is:
+01 — retrospective: Did we achieve what we set out to?
+02 — maturity-model: How has our AI practice matured?
+
+Start by asking me three context questions together:
+1. What was the initiative — what did you build or deploy, and for how long did it run?
+2. Do you have the original outcome statement or success criteria?
+3. In your own words, how would you describe the result?
+
+Then begin the retrospective skill. Produce a feed-forward block at the close that becomes the opening context for the next Before session.`,
+  };
+
   // Shared header
   const Header = ({ onBack, backLabel }) => (
     <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(15,15,15,0.88)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid var(--border)' }}>
@@ -982,17 +1050,28 @@ function StartPage({ go, entry }) {
             </div>
 
             {surface === 'chat' && (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 24 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 20 }}>
                 {[
-                  { n: '01', content: <>Download <code style={{ fontFamily: 'var(--font-mono)', fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)' }}>{detail.startFile}</code> from the GitHub repo</> },
-                  { n: '02', content: 'Open a new Claude Chat conversation and attach the file' },
-                  { n: '03', content: 'Describe your situation — Claude detects the entry point and begins' },
+                  { n: '01', content: 'Copy the kickoff prompt below' },
+                  { n: '02', content: 'Open a new Claude Chat conversation and paste it' },
+                  { n: '03', content: 'Describe your situation — Claude begins the intake' },
                 ].map(s => (
                   <div key={s.n} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
                     <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: color, flexShrink: 0, paddingTop: 2 }}>{s.n}</span>
                     <span style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{s.content}</span>
                   </div>
                 ))}
+              </div>
+            )}
+
+            {/* Copyable prompt — chat only */}
+            {surface === 'chat' && (
+              <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 8, overflow: 'hidden', marginBottom: 16 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', borderBottom: '1px solid var(--border)' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-faint)' }}>Kickoff prompt — paste into Claude Chat</span>
+                  <CopyButton text={chatPrompts[selectedEntry]} color={color} />
+                </div>
+                <pre style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)', lineHeight: 1.6, padding: '14px', margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-word', maxHeight: 180, overflowY: 'auto' }}>{chatPrompts[selectedEntry]}</pre>
               </div>
             )}
 
@@ -1012,21 +1091,15 @@ function StartPage({ go, entry }) {
 
             <div style={{ display: 'flex', gap: 10 }}>
               {surface === 'chat' && (
-                <>
-                  <a href={GHBase + detail.startFile} target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '10px 18px', borderRadius: 6, background: `color-mix(in srgb, ${color} 18%, transparent)`, color: color, border: `1px solid color-mix(in srgb, ${color} 35%, transparent)`, textDecoration: 'none', display: 'inline-block' }}>
-                    ↓ Download {detail.startFile}
-                  </a>
-                  <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '10px 18px', borderRadius: 6, background: 'transparent', color: 'var(--fg-muted)', border: '1px solid var(--border)', textDecoration: 'none', display: 'inline-block' }}>
-                    Open Claude →
-                  </a>
-                </>
+                <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '10px 18px', borderRadius: 6, background: `color-mix(in srgb, ${color} 18%, transparent)`, color: color, border: `1px solid color-mix(in srgb, ${color} 35%, transparent)`, textDecoration: 'none', display: 'inline-block' }}>
+                  Open Claude →
+                </a>
               )}
               {surface === 'code' && (
                 <a href="https://github.com/quinrobinson/ai-strategy-practice-framework" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '10px 18px', borderRadius: 6, background: `color-mix(in srgb, ${color} 18%, transparent)`, color: color, border: `1px solid color-mix(in srgb, ${color} 35%, transparent)`, textDecoration: 'none', display: 'inline-block' }}>
                   Clone repo →
                 </a>
               )}
-              {/* Switch surface */}
               <button onClick={() => setSurface(null)} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '10px 18px', borderRadius: 6, background: 'transparent', color: 'var(--fg-faint)', border: 'none', cursor: 'pointer' }}>
                 Switch surface
               </button>

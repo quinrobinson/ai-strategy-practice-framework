@@ -1,0 +1,17 @@
+name = "aspf-mcp"
+main = "src/worker.ts"
+compatibility_date = "2024-01-01"
+workers_dev = true
+
+[[kv_namespaces]]
+binding = "SKILLS_KV"
+id = "placeholder-replace-with-real-kv-id"
+preview_id = "placeholder-replace-with-preview-kv-id"
+
+[build]
+command = "npm install && npx tsc"
+
+# Routes (configure after deployment)
+# [[routes]]
+# pattern = "mcp.aspf.io/*"
+# zone_name = "aspf.io"

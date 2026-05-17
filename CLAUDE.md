@@ -117,6 +117,25 @@ When naming an active agent in session, use this format:
 
 ---
 
+## MCP Server
+
+The ASPF MCP server lives in `/mcp/` and deploys to Cloudflare Workers.
+
+**Tools exposed:**
+- `aspf_get_skill` — return skill file content by name (replaces file uploads)
+- `aspf_get_skills_for_entry` — return ordered sequence for before/during/after
+- `aspf_detect_entry` — classify an opening message as Before/During/After
+- `aspf_run_intake` — run full decision tree intake, return entry + first skill + context questions
+- `aspf_get_context` — read `.aspf/context.json` + list artifacts
+- `aspf_write_artifact` — write skill output to `.aspf/artifacts/`
+- `aspf_list_artifacts` — list all artifacts in this project
+- `aspf_get_deck_prompt` — return PowerPoint generation prompt for an artifact
+
+**Local (stdio):** `cd mcp && npm install && npm run build && node dist/index.js`
+**Deploy:** `cd mcp && wrangler deploy` (requires KV namespace — run `upload-skills-to-kv.sh` first)
+
+---
+
 ## Session State — .aspf/context.json
 
 Read at session open via `context-inject` hook. Written at session close via `auto-persist` hook.
