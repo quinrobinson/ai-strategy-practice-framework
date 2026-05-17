@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ASPF — System Architecture</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --bg: #060D1A;
+    --surface: #0D1929;
+    --border: rgba(255,255,255,0.07);
+    --text-primary: #F1F5F9;
+    --text-secondary: #64748B;
+    --text-muted: #334155;
+
+    --orchestrator: #E8601A;
+    --predictor: #F59E0B;
+    --agent: #818CF8;
+    --skill: #22C55E;
+    --hook: #FCD34D;
+    --command: #38BDF8;
+    --memory: #A78BFA;
+    --bridge: #14B8A6;
+
+    --entry-before: #3B82F6;
+    --entry-during: #F59E0B;
+    --entry-after: #EF4444;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    padding: 48px 32px;
+  }
+
+  header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--bridge);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    color: var(--text-primary);
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  /* Layout */
+  .arch {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  /* Section label */
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0 0 8px 4px;
+    margin-top: 32px;
+  }
+
+  /* Row */
+  .row {
+    display: flex;
+    gap: 2px;
+  }
+
+  /* Entry Points */
+  .entry-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px;
+    margin-bottom: 2px;
+  }
+
+  .entry {
+    padding: 20px 24px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .entry::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+
+  .entry.before::before { background: var(--entry-before); }
+  .entry.during::before { background: var(--entry-during); }
+  .entry.after::before  { background: var(--entry-after); }
+
+  .entry-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .entry.before .entry-tag { color: var(--entry-before); }
+  .entry.during .entry-tag { color: var(--entry-during); }
+  .entry.after  .entry-tag { color: var(--entry-after); }
+
+  .entry-q {
+    font-size: 13px;
+    color: var(--text-primary);
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  .entry-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* Connector */
+  .connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    color: var(--text-muted);
+    font-size: 11px;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 1px;
+    position: relative;
+  }
+
+  .connector::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--border);
+    transform: translateX(-50%);
+  }
+
+  .connector span {
+    background: var(--bg);
+    padding: 0 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Core blocks */
+  .block {
+    flex: 1;
+    padding: 20px 24px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .block-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+
+  .block-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .block-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Orchestrator */
+  .orchestrator {
+    background: linear-gradient(135deg, rgba(232,96,26,0.12) 0%, rgba(232,96,26,0.04) 100%);
+    border-color: rgba(232,96,26,0.3);
+    padding: 24px 32px;
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+  }
+
+  .orchestrator .block-title { color: var(--orchestrator); }
+  .orchestrator .block-name { font-size: 18px; }
+
+  .orchestrator-note {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* Predictor strip */
+  .predictor {
+    background: rgba(245,158,11,0.06);
+    border-color: rgba(245,158,11,0.2);
+    padding: 14px 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .predictor-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--predictor);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px var(--predictor);
+  }
+
+  .predictor-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--predictor);
+    flex-shrink: 0;
+    width: 80px;
+  }
+
+  .predictor-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* Agents grid */
+  .agents-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .agent-card {
+    padding: 18px 20px;
+    border-radius: 6px;
+    border: 1px solid rgba(129,140,248,0.2);
+    background: rgba(129,140,248,0.04);
+    position: relative;
+  }
+
+  .agent-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--agent);
+    margin-bottom: 6px;
+  }
+
+  .agent-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .agent-trigger {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    border-top: 1px solid var(--border);
+    padding-top: 8px;
+    margin-top: 8px;
+  }
+
+  .agent-trigger strong {
+    color: var(--agent);
+    font-weight: 500;
+    display: block;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Second row of agents */
+  .agents-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  /* Skills grid */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .skill-card {
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(34,197,94,0.15);
+    background: rgba(34,197,94,0.03);
+  }
+
+  .skill-file {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--skill);
+    margin-bottom: 5px;
+  }
+
+  .skill-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* Hooks row */
+  .hooks-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+  }
+
+  .hook-card {
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(252,211,77,0.15);
+    background: rgba(252,211,77,0.03);
+  }
+
+  .hook-event {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--hook);
+    margin-bottom: 5px;
+  }
+
+  .hook-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .hook-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* Commands */
+  .commands-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+  }
+
+  .command-card {
+    padding: 14px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(56,189,248,0.15);
+    background: rgba(56,189,248,0.03);
+    text-align: center;
+  }
+
+  .command-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--command);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .command-desc {
+    font-size: 10px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* Memory row */
+  .memory-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2px;
+  }
+
+  .memory-card {
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: 1px solid rgba(167,139,250,0.15);
+    background: rgba(167,139,250,0.03);
+  }
+
+  .memory-key {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--memory);
+    margin-bottom: 4px;
+  }
+
+  .memory-desc {
+    font-size: 11px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  /* Bridge */
+  .bridge {
+    padding: 20px 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(20,184,166,0.3);
+    background: rgba(20,184,166,0.06);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .bridge-icon {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 20px;
+    color: var(--bridge);
+    flex-shrink: 0;
+  }
+
+  .bridge-content {}
+
+  .bridge-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bridge);
+    margin-bottom: 4px;
+  }
+
+  .bridge-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .bridge-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-secondary);
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Flow arrows between sections */
+  .flow-arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    color: var(--text-muted);
+    font-size: 16px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="label">System Architecture</div>
+  <h1>AI Strategy Practice Framework</h1>
+  <p class="subtitle">Need-driven agent activation. Multi-agent sessions. Claude is the decision tree.</p>
+</header>
+
+<div class="arch">
+
+  <!-- Entry Points -->
+  <div class="section-label">Entry Points</div>
+  <div class="entry-row">
+    <div class="entry before">
+      <div class="entry-tag">Before</div>
+      <div class="entry-q">Should we use AI here, and how?</div>
+      <div class="entry-desc">Project start — problem qualification, method selection, risk mapping</div>
+    </div>
+    <div class="entry during">
+      <div class="entry-tag">During</div>
+      <div class="entry-q">Are we using AI in the right ways?</div>
+      <div class="entry-desc">Mid-project — recalibration, drift detection, emerging risk flags</div>
+    </div>
+    <div class="entry after">
+      <div class="entry-tag">After</div>
+      <div class="entry-q">Did our AI approach actually work?</div>
+      <div class="entry-desc">Project close — outcome vs. intention, retrospective, lessons forward</div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- Orchestrator -->
+  <div class="orchestrator">
+    <div class="block-title">Orchestrator</div>
+    <div class="block-name">Claude AI — The Decision Tree</div>
+    <div class="orchestrator-note">Reads the situation. Activates the right agents. Synthesizes outputs into a single recommendation.</div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- Predictor — always on -->
+  <div class="predictor">
+    <div class="predictor-dot"></div>
+    <div class="predictor-label">Predictor</div>
+    <div class="predictor-desc">Always active alongside every session — pattern-matches inputs against the failure mode library and surfaces risks the team hasn't hit yet.</div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- Agents -->
+  <div class="section-label">Role Agents — Activated by need, not pre-assigned</div>
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-tag">Agent</div>
+      <div class="agent-name">AI Strategy Lead</div>
+      <div class="agent-trigger">
+        <strong>Activated when</strong>
+        Setting direction, making the case to leadership, evaluating where AI creates value
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Agent</div>
+      <div class="agent-name">AI Product Manager</div>
+      <div class="agent-trigger">
+        <strong>Activated when</strong>
+        Build vs. buy vs. pilot decisions, roadmap prioritization, scoping AI features
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Agent</div>
+      <div class="agent-name">AI Researcher</div>
+      <div class="agent-trigger">
+        <strong>Activated when</strong>
+        Research method selection, AI in research practice, synthesizing AI-related findings
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Agent</div>
+      <div class="agent-name">Ethics & Risk Advisor</div>
+      <div class="agent-trigger">
+        <strong>Activated when</strong>
+        Risk mapping, governance questions, bias evaluation, compliance concerns
+      </div>
+    </div>
+  </div>
+  <div style="height:2px"></div>
+  <div class="agents-grid-3">
+    <div class="agent-card">
+      <div class="agent-tag">Agent</div>
+      <div class="agent-name">ML / AI Engineer</div>
+      <div class="agent-trigger">
+        <strong>Activated when</strong>
+        Feasibility assessment, data readiness, model selection, technical constraints
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Agent</div>
+      <div class="agent-name">Change & Enablement Lead</div>
+      <div class="agent-trigger">
+        <strong>Activated when</strong>
+        Adoption, team readiness, resistance management, training, process change
+      </div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-tag">Agent</div>
+      <div class="agent-name">AI Practice Lead</div>
+      <div class="agent-trigger">
+        <strong>Activated when</strong>
+        Framework questions, capability building, cross-team AI practice decisions
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- Skills -->
+  <div class="section-label">Skill Files</div>
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-file">problem-qualification.md</div>
+      <div class="skill-desc">Is this problem worth solving with AI?</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-file">ai-method-selection.md</div>
+      <div class="skill-desc">Which AI approach fits this context?</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-file">risk-mapping.md</div>
+      <div class="skill-desc">What could go wrong, and when?</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-file">outcome-definition.md</div>
+      <div class="skill-desc">How will we know if it worked?</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-file">readiness-audit.md</div>
+      <div class="skill-desc">Team, data, tooling, and process readiness</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-file">failure-mode-library.md</div>
+      <div class="skill-desc">Pattern library of common AI strategy failures</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-file">retrospective.md</div>
+      <div class="skill-desc">Post-project AI strategy evaluation</div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-file">phase-routing.md</div>
+      <div class="skill-desc">Maps ASPF outputs to APDF entry points</div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- Hooks -->
+  <div class="section-label">Hooks</div>
+  <div class="hooks-grid">
+    <div class="hook-card">
+      <div class="hook-event">PreConversation</div>
+      <div class="hook-name">entry-detect</div>
+      <div class="hook-desc">Detects which entry point from the first message — Before, During, or After</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-event">PreToolUse</div>
+      <div class="hook-name">context-inject</div>
+      <div class="hook-desc">Injects project context, team profile, and prior decisions before any tool runs</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-event">PostToolUse</div>
+      <div class="hook-name">risk-flag</div>
+      <div class="hook-desc">After any intake response, checks against the failure mode library automatically</div>
+    </div>
+    <div class="hook-card">
+      <div class="hook-event">Stop</div>
+      <div class="hook-name">apdf-bridge</div>
+      <div class="hook-desc">If a Before session closes with a path, prompts /handoff to generate an APDF-ready brief</div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- Commands -->
+  <div class="section-label">Commands</div>
+  <div class="commands-grid">
+    <div class="command-card">
+      <div class="command-name">/diagnose</div>
+      <div class="command-desc">Full Before intake — decision tree from scratch</div>
+    </div>
+    <div class="command-card">
+      <div class="command-name">/audit</div>
+      <div class="command-desc">During check-in — mid-project recalibration</div>
+    </div>
+    <div class="command-card">
+      <div class="command-name">/retro</div>
+      <div class="command-desc">After retrospective — outcome vs. intention</div>
+    </div>
+    <div class="command-card">
+      <div class="command-name">/predict</div>
+      <div class="command-desc">Run Predictor standalone against current context</div>
+    </div>
+    <div class="command-card">
+      <div class="command-name">/risk</div>
+      <div class="command-desc">Surface current risk profile at any point</div>
+    </div>
+    <div class="command-card">
+      <div class="command-name">/handoff</div>
+      <div class="command-desc">Generate APDF-ready brief from ASPF outputs</div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- Memory -->
+  <div class="section-label">Memory & Context — .aspf/context.json</div>
+  <div class="memory-row">
+    <div class="memory-card">
+      <div class="memory-key">session</div>
+      <div class="memory-desc">Entry point, session type, active agents, current phase of tree</div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-key">team_profile</div>
+      <div class="memory-desc">Roles, AI maturity, prior experience, constraints</div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-key">decision_log</div>
+      <div class="memory-desc">What was recommended, what was accepted, what was overridden</div>
+    </div>
+    <div class="memory-card">
+      <div class="memory-key">risk_flags</div>
+      <div class="memory-desc">Active risks, predicted failure modes, severity scores</div>
+    </div>
+  </div>
+
+  <div class="flow-arrow">↓</div>
+
+  <!-- APDF Bridge -->
+  <div class="bridge">
+    <div class="bridge-icon">→</div>
+    <div class="bridge-content">
+      <div class="bridge-title">APDF Bridge</div>
+      <div class="bridge-name">Handoff to Agentic Product Design Framework</div>
+      <div class="bridge-desc">When a Before session closes with a validated AI approach, /handoff generates a structured brief carrying the problem definition, method decision, constraints, and risk flags directly into APDF as opening context. Strategy becomes design input.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Legend -->
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--entry-before)"></div>Before</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--entry-during)"></div>During</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--entry-after)"></div>After</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--orchestrator)"></div>Orchestrator</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--predictor)"></div>Predictor</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--agent)"></div>Role Agent</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--skill)"></div>Skill File</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--hook)"></div>Hook</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--command)"></div>Command</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--memory)"></div>Memory</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--bridge)"></div>APDF Bridge</div>
+</div>
+
+</body>
+</html>
