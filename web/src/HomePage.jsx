@@ -67,7 +67,7 @@ function HomePage({ go }) {
             return (
               <div
                 key={ep.id}
-                onClick={() => go('start')}
+                onClick={() => go(ep.id)}
                 onMouseEnter={() => setHovered(ep.id)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
@@ -126,11 +126,11 @@ function HomePage({ go }) {
 
         {/* Single CTA below cards */}
         <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', gap: 16 }}>
-          <Button variant="primary" onClick={() => go('start')} style={{ fontSize: 12 }}>
+          <Button variant="primary" onClick={() => go('diagnose')} style={{ fontSize: 12 }}>
             I don't know where to start →
           </Button>
           <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-faint)' }}>
-            Claude will ask three questions and place you.
+            Answer two questions — we'll place you.
           </span>
         </div>
       </div>
@@ -153,7 +153,7 @@ function HomePage({ go }) {
             </p>
 
             <div style={{ marginTop: 32, display: 'flex', gap: 10 }}>
-              <Button onClick={() => go('start')}>Get started</Button>
+              <Button onClick={() => go('diagnose')}>Get started</Button>
               <Button onClick={() => go('skills')} style={{ color: 'var(--fg-muted)' }}>View skill files</Button>
             </div>
           </div>
