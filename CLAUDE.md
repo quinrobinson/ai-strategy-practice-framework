@@ -148,10 +148,6 @@ If `context.json` exists from a prior session, read it before running Layer 0. D
 | `risk-flag` | PostToolUse | Check intake response against failure-mode-library |
 | `apdf-bridge` | Stop | If Before session closes with a path, prompt `/handoff` |
 
----
-
-## Relationship to APDF
-
 ASPF is upstream of APDF at the project level — not the organizational level.
 
 - ASPF answers: should we use AI, which method, what are the risks, how will we measure success, are we ready
@@ -160,6 +156,23 @@ ASPF is upstream of APDF at the project level — not the organizational level.
 The `/handoff` command generates the APDF-ready brief. That brief becomes the first message of the APDF session. The APDF Orchestrator reads it as full project context.
 
 Do not conflate the two frameworks. ASPF is strategy. APDF is execution.
+
+---
+
+## README Sync
+
+`README.md` is the cold entry point — the first thing anyone sees landing on the repo. It must stay accurate as the framework evolves.
+
+**Run `/project:update-readme` after any of these changes:**
+- New skill added to `.claude/skills/` or `skills/`
+- Slash command added or removed from `.claude/commands/`
+- Agent roster updated in this file
+- Skill routing sequence changed
+- Repo structure changed
+
+The command reads CLAUDE.md and all skill files, diffs against the current README, and proposes targeted updates — only changed sections, never full rewrites. It stages but does not commit — always review before pushing.
+
+**Never manually edit README tables** — they drift from the source of truth. Always regenerate via the command.
 
 ---
 
