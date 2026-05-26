@@ -187,6 +187,8 @@ window.ASPF_DATA = {
       pillars: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
       isPrimary: true,
     },
+    {
+      id: 'problem-qualification',
       file: 'problem-qualification.md',
       entryPoint: 'before',
       goal: 'Go / No-go on using AI for this problem.',
