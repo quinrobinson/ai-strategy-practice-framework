@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Strategy Practice Framework</title>
+  <title>AI Strategy Practice Framework — Internal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300..700;1,300..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -134,290 +134,363 @@ body {
   <div id="root"></div>
   <script type="text/babel">
 // ASPF Data — AI Strategy Practice Framework
-// Content for all pages
+// Internal practice methodology — not client-facing
 
 window.ASPF_DATA = {
 
+  // ── AI-Native Enterprise Foundation ──────────────────────────────────────
+  aiNativeEnterprise: {
+    definition: 'An AI-native organization is designed from the ground up to operate and create value through AI agents — where agents are the default workers across front, middle, and back-office processes.',
+    shifts: [
+      {
+        id: 'agents-work',
+        label: 'Agents do the work',
+        sub: 'Humans set direction and guide',
+        desc: 'Agents handle execution by default. The organization flattens around individual contributors and directly responsible individuals; middle management layers shrink.',
+      },
+      {
+        id: 'legible',
+        label: 'The entire company is legible to AI',
+        sub: 'Data, processes, and context are unified',
+        desc: 'All company data and processes are captured, structured, and unified so agents can read the full context of the business and operate autonomously.',
+      },
+      {
+        id: 'closed-loop',
+        label: 'The company runs in a closed loop',
+        sub: 'Sense, decide, act, learn — continuously',
+        desc: 'Every workflow runs as a loop — it senses what\'s happening, decides, acts, checks the result, and feeds what it learned back in for improvements.',
+      },
+    ],
+  },
+
+  // ── Six AI Practice Pillars ───────────────────────────────────────────────
+  pillars: [
+    {
+      id: 'p1',
+      number: '01',
+      name: 'AI Value & Tech Strategy',
+      shortName: 'Strategy',
+      color: '#6366F1', // indigo
+      desc: 'Define the AI strategy, operating model, and architecture so clients know where to invest, what to build first, and how to measure value.',
+      focus: [
+        'Data and AI platform strategy',
+        'Process redesign blueprinting',
+        'Roadmap and implementation plan development',
+        'Tools and application rationalization',
+        'Investment case',
+      ],
+      skills: {
+        before: ['stakeholder-alignment', 'maturity-model', 'outcome-definition', 'problem-qualification'],
+        during: ['mid-project-audit'],
+        after: ['retrospective'],
+      },
+    },
+    {
+      id: 'p2',
+      number: '02',
+      name: 'AI Data Foundation',
+      shortName: 'Data',
+      color: '#0EA5E9', // sky
+      desc: 'Build the data backbone that AI runs on so agents and models can access the full context of the business.',
+      focus: [
+        'Data architecture and lakehouse build',
+        'Pipelines, quality, and lineage',
+        'Access controls and governance',
+        'Knowledge base and company brain structuring',
+      ],
+      skills: {
+        before: ['data-strategy', 'readiness-audit', 'responsible-ai'],
+        during: ['model-monitoring', 'mid-project-audit'],
+        after: ['retrospective'],
+      },
+    },
+    {
+      id: 'p3',
+      number: '03',
+      name: 'AI Rapid Innovation Garage',
+      shortName: 'Innovation',
+      color: '#10B981', // emerald
+      desc: 'Design, build, and launch AI agents through rapid development and experimentation — so clients see working outcomes in weeks, not months.',
+      focus: [
+        'Process, workflow, and use-case discovery and prioritization',
+        'Process redesign around agents',
+        'Agent and application build',
+        'First production deployment and adoption',
+      ],
+      skills: {
+        before: ['problem-qualification', 'ai-method-selection', 'responsible-ai', 'stakeholder-alignment'],
+        during: ['mid-project-audit', 'user-feedback-loops'],
+        after: ['retrospective'],
+      },
+      gaps: ['use-case-prioritization', 'agent-design'],
+    },
+    {
+      id: 'p4',
+      number: '04',
+      name: 'AI Governance',
+      shortName: 'Governance',
+      color: '#F59E0B', // amber
+      desc: 'Implement policies, controls, guardrails, and human oversight into AI systems.',
+      focus: [
+        'Responsible AI policy and operating model implementation',
+        'Model and agent inventory management',
+        'Risk reviews and audits',
+        'Continuous compliance monitoring',
+      ],
+      products: ['Token Optimization (workshop)', 'Operating Model (workshop)'],
+      skills: {
+        before: ['responsible-ai', 'risk-mapping', 'stakeholder-alignment', 'outcome-definition'],
+        during: ['model-monitoring', 'mid-project-audit'],
+        after: ['retrospective'],
+      },
+    },
+    {
+      id: 'p5',
+      number: '05',
+      name: 'AI Factory',
+      shortName: 'Factory',
+      color: '#EF4444', // red
+      desc: 'Industrialize AI delivery and operations so AI systems run reliably, repeatably, and at enterprise scale.',
+      focus: [
+        'Reusable patterns and components',
+        'MLOps and AgentOps pipelines',
+        'Closed-loop monitoring and evals',
+        'Cross-business-unit roll-out',
+      ],
+      products: ['HR/Employee Operations', 'Customer Operations'],
+      skills: {
+        before: ['readiness-audit', 'outcome-definition', 'risk-mapping'],
+        during: ['model-monitoring', 'user-feedback-loops', 'mid-project-audit'],
+        after: ['retrospective', 'maturity-model'],
+      },
+      gaps: ['mlops-readiness', 'operating-model'],
+    },
+    {
+      id: 'p6',
+      number: '06',
+      name: 'Run & Enhance',
+      shortName: 'Run',
+      color: '#8B5CF6', // violet
+      desc: 'Operate the AI-native organization post-launch and continuously improve the system and outcomes.',
+      focus: [
+        'L1–L3 support for agents and applications',
+        'SLA-backed managed services',
+        'Continuous process and system tuning',
+        'Ongoing value capture and reporting',
+      ],
+      skills: {
+        before: ['outcome-definition', 'risk-mapping', 'responsible-ai'],
+        during: ['model-monitoring', 'user-feedback-loops', 'mid-project-audit'],
+        after: ['retrospective', 'maturity-model'],
+      },
+      gaps: ['managed-service-model'],
+    },
+  ],
+
+  // ── Entry Points (lifecycle) ──────────────────────────────────────────────
   entryPoints: [
     {
       id: 'before',
       label: 'Before',
       color: 'var(--entry-before)',
-      question: 'Should we use AI here, and how?',
-      desc: 'Starting a new AI initiative — qualify the problem, select a method, map risks, define outcomes, and assess readiness.',
-      cta: 'Start the intake →',
-      skills: ['problem-qualification', 'ai-method-selection', 'risk-mapping', 'outcome-definition', 'readiness-audit', 'phase-routing'],
+      question: 'Starting or scoping an engagement',
+      desc: 'Qualify, plan, and prepare before committing resources.',
     },
     {
       id: 'during',
       label: 'During',
       color: 'var(--entry-during)',
-      question: 'Are we using AI in the right ways?',
-      desc: 'Mid-project recalibration — detect drift, surface emerging risks, and course-correct before failure locks in.',
-      cta: 'Run an audit →',
-      skills: ['mid-project-audit'],
+      question: 'Active engagement — checking in',
+      desc: 'Audit progress, detect drift, surface risks.',
     },
     {
       id: 'after',
       label: 'After',
       color: 'var(--entry-after)',
-      question: 'Did our AI approach actually work?',
-      desc: 'Post-project evaluation — measure outcomes against intentions, extract lessons, and feed forward to the next initiative.',
-      cta: 'Start the retro →',
-      skills: ['retrospective'],
+      question: 'Engagement concluded — evaluating',
+      desc: 'Measure outcomes, extract lessons, feed forward.',
     },
   ],
 
-  agents: [
-    {
-      id: 'strategy',
-      name: 'AI Strategy Lead',
-      sub: 'Direction & Leadership',
-      color: 'var(--role-strategy)',
-      activatedWhen: 'Setting direction, making the case to leadership, evaluating where AI creates value across the product.',
-      commands: ['/project:diagnose'],
-      alwaysActive: false,
-    },
-    {
-      id: 'pm',
-      name: 'AI Product Manager',
-      sub: 'Roadmap & Prioritization',
-      color: 'var(--role-pm)',
-      activatedWhen: 'Build vs. buy vs. pilot decisions, roadmap prioritization, scoping AI features and initiatives.',
-      commands: ['/project:diagnose', '/project:audit'],
-      alwaysActive: false,
-    },
-    {
-      id: 'researcher',
-      name: 'AI Researcher',
-      sub: 'Research Practice',
-      color: 'var(--role-researcher)',
-      activatedWhen: 'Research method selection, evaluating AI in research practice, synthesizing AI-related findings.',
-      commands: ['/project:diagnose'],
-      alwaysActive: false,
-    },
-    {
-      id: 'ethics',
-      name: 'Ethics & Risk Advisor',
-      sub: 'Governance & Compliance',
-      color: 'var(--role-ethics)',
-      activatedWhen: 'Risk mapping, governance questions, bias evaluation, compliance concerns, high-stakes domains.',
-      commands: ['/project:diagnose', '/project:audit', '/project:predict'],
-      alwaysActive: false,
-    },
-    {
-      id: 'engineer',
-      name: 'ML / AI Engineer',
-      sub: 'Feasibility & Data',
-      color: 'var(--role-engineer)',
-      activatedWhen: 'Feasibility assessment, data readiness evaluation, model selection, technical constraint review.',
-      commands: ['/project:diagnose', '/project:audit'],
-      alwaysActive: false,
-    },
-    {
-      id: 'change',
-      name: 'Change & Enablement Lead',
-      sub: 'Adoption & Readiness',
-      color: 'var(--role-change)',
-      activatedWhen: 'Adoption planning, team readiness assessment, resistance management, training, process change.',
-      commands: ['/project:diagnose', '/project:audit'],
-      alwaysActive: false,
-    },
-    {
-      id: 'practice',
-      name: 'AI Practice Lead',
-      sub: 'Capability Building',
-      color: 'var(--role-practice)',
-      activatedWhen: 'Framework questions, capability building, cross-team AI practice decisions, methodology.',
-      commands: ['/project:audit', '/project:retro'],
-      alwaysActive: false,
-    },
-    {
-      id: 'predictor',
-      name: 'Predictor',
-      sub: 'Always Active',
-      color: 'var(--role-predictor)',
-      activatedWhen: 'Runs alongside every session — pattern-matches inputs against the failure mode library and surfaces risks before the team encounters them.',
-      commands: ['/project:predict', '/project:risk'],
-      alwaysActive: true,
-    },
-  ],
-
+  // ── Skills ────────────────────────────────────────────────────────────────
   skills: [
     {
       id: 'problem-qualification',
       file: 'problem-qualification.md',
       entryPoint: 'before',
-      step: 1,
       goal: 'Go / No-go on using AI for this problem.',
       output: 'Problem Qualification Record — scored and documented.',
-      unlocks: 'AI Method Selection. Nothing proceeds without this.',
-      desc: 'Determine whether a problem is genuinely worth solving with AI before committing any method, tool, or resource.',
+      unlocks: 'AI Method Selection.',
+      desc: 'Determine whether a problem is worth solving with AI before committing any method or resource.',
+      pillars: ['p1', 'p3'],
     },
     {
       id: 'ai-method-selection',
       file: 'ai-method-selection.md',
       entryPoint: 'before',
-      step: 2,
-      goal: 'Which AI method to use, and whether to build, buy, or integrate it.',
-      output: 'AI Method Selection Brief — method, rationale, data requirements.',
+      goal: 'Which AI method to use, and whether to build, buy, or integrate.',
+      output: 'AI Method Selection Brief.',
       unlocks: 'Risk Mapping and Readiness Audit.',
-      desc: 'Select the right AI approach for a validated problem before any build, buy, or pilot decision is made.',
-    },
-    {
-      id: 'risk-mapping',
-      file: 'risk-mapping.md',
-      entryPoint: 'before',
-      step: 3,
-      goal: 'Whether and how to proceed given the risk profile.',
-      output: 'AI Risk Register — scored risks with mitigations and owners.',
-      unlocks: 'A defensible path forward. Feeds into APDF as phase-level constraints.',
-      desc: 'Identify and structure AI-specific risks across technical, ethical, organizational, and legal dimensions.',
-    },
-    {
-      id: 'outcome-definition',
-      file: 'outcome-definition.md',
-      entryPoint: 'before',
-      step: 4,
-      goal: 'What success looks like — specific enough that anyone can judge it.',
-      output: 'Outcome Brief — hypothesis statement, primary metric, guardrails.',
-      unlocks: 'Accountability. The readiness audit is only meaningful with a defined destination.',
-      desc: 'Define measurable outcomes and success criteria before any AI is built, bought, or deployed.',
-    },
-    {
-      id: 'readiness-audit',
-      file: 'readiness-audit.md',
-      entryPoint: 'before',
-      step: 5,
-      goal: 'Whether the team is ready to commit — and if not, what must change first.',
-      output: 'Readiness Score (0–100) across people, data, tooling, process.',
-      unlocks: 'Informed commitment. Gaps become conditions, not surprises.',
-      desc: 'Audit team readiness across four dimensions before any significant AI investment is committed.',
-    },
-    {
-      id: 'phase-routing',
-      file: 'phase-routing.md',
-      entryPoint: 'before',
-      step: 6,
-      goal: 'Which APDF phase to enter, with what context and constraints.',
-      output: 'APDF Handoff Brief — strategy becomes design input.',
-      unlocks: 'Continuity between ASPF and APDF. Run via /project:handoff.',
-      desc: 'Translate completed ASPF outputs into an APDF-ready brief — the bridge between strategy and design.',
-    },
-    {
-      id: 'mid-project-audit',
-      file: 'mid-project-audit.md',
-      entryPoint: 'during',
-      step: 1,
-      goal: 'Continue, pivot, or stop — with a rationale and owned actions.',
-      output: 'Mid-Project Audit Report — drift assessment, metric trajectory, course correction.',
-      unlocks: 'The ability to course-correct before failure is locked in.',
-      desc: 'Detect drift across five categories and surface emerging risks while there is still time to respond.',
-    },
-    {
-      id: 'retrospective',
-      file: 'retrospective.md',
-      entryPoint: 'after',
-      step: 1,
-      goal: 'What to carry forward, change, and watch for in the next initiative.',
-      output: 'Retrospective Report + Feed-Forward Block for the next Before session.',
-      unlocks: 'Compounding improvement. The learning loop closes here.',
-      desc: 'Evaluate outcomes against intentions, audit process adherence, and generate inputs for the next cycle.',
-    },
-    {
-      id: 'failure-mode-library',
-      file: 'failure-mode-library.md',
-      entryPoint: 'all',
-      step: null,
-      goal: 'Pattern library for the Predictor — loaded in every session.',
-      output: 'Predictive Risk Report when run via /project:predict.',
-      unlocks: 'Proactive failure prevention across all entry points.',
-      desc: 'Eleven documented AI strategy failure modes with early signals and interventions. The Predictor\'s reference library.',
+      desc: 'Select the right AI approach for a validated problem.',
+      pillars: ['p1', 'p3'],
     },
     {
       id: 'responsible-ai',
       file: 'responsible-ai.md',
       entryPoint: 'before',
-      step: null,
-      goal: 'Whether this initiative meets responsible AI obligations — and what must change before proceeding.',
-      output: 'Responsible AI Assessment — scored across five principles with a proceed/remediate/stop recommendation.',
-      unlocks: 'A defensible record that responsible AI was considered proactively. Required by EU AI Act, ISO 42001, NIST AI RMF.',
-      desc: 'Structured responsible AI checklist covering fairness, accountability, transparency, privacy, and safety — run alongside risk-mapping.',
+      goal: 'Whether this initiative meets responsible AI obligations.',
+      output: 'Responsible AI Assessment — five principles, regulatory mapping, sign-off record.',
+      unlocks: 'Defensible governance record. Required by EU AI Act, ISO 42001, NIST AI RMF.',
+      desc: 'Five-principle responsible AI checklist — fairness, accountability, transparency, privacy, safety.',
+      pillars: ['p4', 'p2', 'p3'],
     },
     {
-      id: 'stakeholder-alignment',
-      file: 'stakeholder-alignment.md',
+      id: 'risk-mapping',
+      file: 'risk-mapping.md',
       entryPoint: 'before',
-      step: null,
-      goal: 'Whether the organization is aligned enough to proceed — and what stakeholder work must happen first.',
-      output: 'Stakeholder Alignment Map and Leadership Case — who needs to be on board, where the resistance is.',
-      unlocks: 'Organizational permission to proceed. Prevents FM-09 (Change Resistance) before it takes root.',
-      desc: 'Map stakeholders, identify resistance, and build the leadership case for an AI initiative before resources are committed.',
+      goal: 'Whether and how to proceed given the risk profile.',
+      output: 'AI Risk Register — scored risks with mitigations and owners.',
+      unlocks: 'A defensible path forward. Feeds into APDF as phase-level constraints.',
+      desc: 'Identify and structure AI-specific risks across technical, ethical, organizational, and legal dimensions.',
+      pillars: ['p4', 'p1', 'p6'],
+    },
+    {
+      id: 'outcome-definition',
+      file: 'outcome-definition.md',
+      entryPoint: 'before',
+      goal: 'What success looks like — specific enough that anyone can judge it.',
+      output: 'Outcome Brief — hypothesis statement, primary metric, guardrails.',
+      unlocks: 'Accountability. Makes the readiness audit meaningful.',
+      desc: 'Define measurable outcomes and success criteria before any AI is built or deployed.',
+      pillars: ['p1', 'p5', 'p6'],
+    },
+    {
+      id: 'readiness-audit',
+      file: 'readiness-audit.md',
+      entryPoint: 'before',
+      goal: 'Whether the team is ready to commit — and if not, what must change.',
+      output: 'Readiness Score (0–100) across people, data, tooling, process.',
+      unlocks: 'Informed commitment. Gaps become conditions, not surprises.',
+      desc: 'Audit team readiness across four dimensions before any significant AI investment.',
+      pillars: ['p2', 'p5'],
     },
     {
       id: 'data-strategy',
       file: 'data-strategy.md',
       entryPoint: 'before',
-      step: null,
-      goal: 'Whether the data strategy is sufficient to proceed — and what data work must happen before the build.',
-      output: 'Data Strategy Document — inventory, governance, lineage, consent, quality plan, and privacy by design controls.',
-      unlocks: 'Confidence that the AI system\'s data foundation is sound. Prevents FM-05 (Data Readiness Overestimation).',
-      desc: 'Define how data will be sourced, governed, used, and maintained — covering governance, lineage, consent, quality, and privacy by design.',
+      goal: 'Whether the data strategy is sufficient to proceed.',
+      output: 'Data Strategy Document — inventory, governance, lineage, consent, quality plan.',
+      unlocks: 'Confidence the AI system\'s data foundation is sound. Prevents FM-05.',
+      desc: 'Define how data will be sourced, governed, used, and maintained.',
+      pillars: ['p2'],
     },
     {
-      id: 'model-monitoring',
-      file: 'model-monitoring.md',
-      entryPoint: 'during',
-      step: 2,
-      goal: 'Whether the AI system is performing as intended in production — and what to do when it isn\'t.',
-      output: 'Model Monitoring Plan — what to measure, at what frequency, with what thresholds, and response protocols.',
-      unlocks: 'Proactive operational control. Catches degradation before users surface it. Prevents silent failure.',
-      desc: 'Design and run ongoing monitoring across five layers: input drift, output drift, performance, fairness, and operational health.',
-    },
-    {
-      id: 'user-feedback-loops',
-      file: 'user-feedback-loops.md',
-      entryPoint: 'during',
-      step: 3,
-      goal: 'Whether the AI system is working for users — and what needs to change if it isn\'t.',
-      output: 'User Feedback Plan — what to collect, how to analyze it, and how to close the loop from feedback to action.',
-      unlocks: 'The human signal layer that model monitoring can\'t provide. Catches trust and adoption issues early.',
-      desc: 'Design structured feedback mechanisms that capture how users experience the AI system and route signal back into improvement cycles.',
+      id: 'stakeholder-alignment',
+      file: 'stakeholder-alignment.md',
+      entryPoint: 'before',
+      goal: 'Whether the organization is aligned enough to proceed.',
+      output: 'Stakeholder Alignment Map and Leadership Case.',
+      unlocks: 'Organizational permission to proceed.',
+      desc: 'Map stakeholders, identify resistance, and build the leadership case.',
+      pillars: ['p1', 'p3', 'p4'],
     },
     {
       id: 'maturity-model',
       file: 'maturity-model.md',
       entryPoint: 'before',
-      step: null,
-      goal: 'Where the team\'s AI practice sits today — and where to invest to move it forward.',
-      output: 'AI Practice Maturity Assessment — scored across six dimensions with a prioritized improvement roadmap.',
-      unlocks: 'A strategic foundation for the AI Practice Lead. Turns capability building from vague aspiration to structured plan.',
-      desc: 'Assess the team\'s sustained capability to run AI initiatives well across six dimensions — strategy, problem definition, data, risk, measurement, and culture.',
+      goal: 'Where the AI practice sits today — and where to invest to move it forward.',
+      output: 'AI Practice Maturity Assessment — six dimensions, 12-month roadmap.',
+      unlocks: 'A strategic foundation for practice improvement.',
+      desc: 'Assess the team\'s sustained capability to run AI initiatives across six dimensions.',
+      pillars: ['p1', 'p5', 'p6'],
+    },
+    {
+      id: 'mid-project-audit',
+      file: 'mid-project-audit.md',
+      entryPoint: 'during',
+      goal: 'Continue, pivot, or stop — with rationale and owned actions.',
+      output: 'Mid-Project Audit Report — drift assessment, metric trajectory, course correction.',
+      unlocks: 'The ability to course-correct before failure is locked in.',
+      desc: 'Detect drift across five categories and surface emerging risks.',
+      pillars: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
+    },
+    {
+      id: 'model-monitoring',
+      file: 'model-monitoring.md',
+      entryPoint: 'during',
+      goal: 'Whether the AI system is performing as intended in production.',
+      output: 'Model Monitoring Plan — five-layer monitoring with alert thresholds.',
+      unlocks: 'Proactive operational control. Prevents silent failure.',
+      desc: 'Design and run ongoing monitoring across input drift, output drift, performance, fairness, and operational health.',
+      pillars: ['p2', 'p4', 'p5', 'p6'],
+    },
+    {
+      id: 'user-feedback-loops',
+      file: 'user-feedback-loops.md',
+      entryPoint: 'during',
+      goal: 'Whether the AI system is working for users.',
+      output: 'User Feedback Plan — three-layer collection with analysis cadence.',
+      unlocks: 'The human signal layer that model monitoring can\'t provide.',
+      desc: 'Design structured feedback mechanisms that capture how users experience the AI system.',
+      pillars: ['p3', 'p5', 'p6'],
+    },
+    {
+      id: 'retrospective',
+      file: 'retrospective.md',
+      entryPoint: 'after',
+      goal: 'What to carry forward, change, and watch for in the next engagement.',
+      output: 'Retrospective Report + Feed-Forward Block.',
+      unlocks: 'Compounding improvement across engagements.',
+      desc: 'Evaluate outcomes against intentions, audit process, and generate inputs for the next cycle.',
+      pillars: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
+    },
+    {
+      id: 'phase-routing',
+      file: 'phase-routing.md',
+      entryPoint: 'before',
+      goal: 'Which APDF phase to enter with what context and constraints.',
+      output: 'APDF Handoff Brief — strategy becomes design input.',
+      unlocks: 'Continuity between ASPF and APDF.',
+      desc: 'Translate ASPF outputs into an APDF-ready brief — the bridge between strategy and design.',
+      pillars: ['p1', 'p3'],
+    },
+    {
+      id: 'failure-mode-library',
+      file: 'failure-mode-library.md',
+      entryPoint: 'all',
+      goal: 'Pattern library for the Predictor — loaded in every session.',
+      output: 'Predictive Risk Report via /project:predict.',
+      unlocks: 'Proactive failure prevention across all pillars and lifecycle stages.',
+      desc: 'Eleven documented AI strategy failure modes with early signals and interventions.',
+      pillars: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
     },
   ],
 
+  // ── Commands ──────────────────────────────────────────────────────────────
   commands: [
     { cmd: '/project:diagnose', desc: 'Start a Before session — full decision tree from scratch.' },
-    { cmd: '/project:audit',    desc: 'Start a During session — mid-project recalibration.' },
+    { cmd: '/project:audit',    desc: 'Start a During session — mid-engagement recalibration.' },
     { cmd: '/project:retro',    desc: 'Start an After session — retrospective evaluation.' },
     { cmd: '/project:predict',  desc: 'Run the Predictor standalone against current context.' },
     { cmd: '/project:risk',     desc: 'Surface the current risk profile.' },
     { cmd: '/project:handoff',  desc: 'Generate an APDF-ready brief from ASPF outputs.' },
+    { cmd: '/project:deck',     desc: 'Generate a stakeholder PowerPoint from any skill artifact.' },
     { cmd: '/project:update-readme', desc: 'Sync README.md with current framework state.' },
   ],
 
+  // ── Failure modes ─────────────────────────────────────────────────────────
   failureModes: [
-    { id: 'FM-01', name: 'Solution-First Thinking',      category: 'Problem Definition', when: 'Immediately',        signal: 'Tool named before problem stated.' },
-    { id: 'FM-02', name: 'Problem-Outcome Disconnect',   category: 'Problem Definition', when: 'Outcome definition', signal: 'Primary metric is an AI system metric, not a business outcome.' },
-    { id: 'FM-03', name: 'Scope Creep at Definition',    category: 'Problem Definition', when: 'Method selection',   signal: 'Problem statement grows with each iteration.' },
-    { id: 'FM-04', name: 'Method-Problem Mismatch',      category: 'Technical',          when: 'Pilot / early build',signal: 'Method chosen by familiarity, not problem type.' },
-    { id: 'FM-05', name: 'Data Readiness Overestimation',category: 'Technical',          when: 'Early build',        signal: '"We have lots of data" — without verification.' },
-    { id: 'FM-06', name: 'Evaluation Gap',               category: 'Technical',          when: 'Build and pilot',    signal: '"We\'ll know it when we see it."' },
-    { id: 'FM-07', name: 'Accountability Gap',           category: 'Organizational',     when: 'Production',         signal: 'No named owner for the AI system in production.' },
-    { id: 'FM-08', name: 'The Pilot Trap',               category: 'Organizational',     when: 'Scaling',            signal: 'Pilot conditions significantly differ from production.' },
-    { id: 'FM-09', name: 'Change Resistance',            category: 'Organizational',     when: 'Activation',         signal: 'No change management plan alongside the technical plan.' },
-    { id: 'FM-10', name: 'Undetected Bias',              category: 'Ethics & Fairness',  when: 'Production',         signal: 'No bias evaluation conducted before deployment.' },
-    { id: 'FM-11', name: 'Opacity at Scale',             category: 'Ethics & Fairness',  when: 'Production',         signal: 'No explainability mechanism for consequential decisions.' },
+    { id: 'FM-01', name: 'Solution-First Thinking',       category: 'Problem Definition', when: 'Immediately',        signal: 'Tool named before problem stated.' },
+    { id: 'FM-02', name: 'Problem-Outcome Disconnect',    category: 'Problem Definition', when: 'Outcome definition',  signal: 'Primary metric is an AI system metric, not a business outcome.' },
+    { id: 'FM-03', name: 'Scope Creep at Definition',     category: 'Problem Definition', when: 'Method selection',    signal: 'Problem statement grows with each iteration.' },
+    { id: 'FM-04', name: 'Method-Problem Mismatch',       category: 'Technical',          when: 'Pilot / early build', signal: 'Method chosen by familiarity, not problem type.' },
+    { id: 'FM-05', name: 'Data Readiness Overestimation', category: 'Technical',          when: 'Early build',         signal: '"We have lots of data" — without verification.' },
+    { id: 'FM-06', name: 'Evaluation Gap',                category: 'Technical',          when: 'Build and pilot',     signal: '"We\'ll know it when we see it."' },
+    { id: 'FM-07', name: 'Accountability Gap',            category: 'Organizational',     when: 'Production',          signal: 'No named owner for the AI system in production.' },
+    { id: 'FM-08', name: 'The Pilot Trap',                category: 'Organizational',     when: 'Scaling',             signal: 'Pilot conditions significantly differ from production.' },
+    { id: 'FM-09', name: 'Change Resistance',             category: 'Organizational',     when: 'Activation',          signal: 'No change management plan alongside the technical plan.' },
+    { id: 'FM-10', name: 'Undetected Bias',               category: 'Ethics & Fairness',  when: 'Production',          signal: 'No bias evaluation conducted before deployment.' },
+    { id: 'FM-11', name: 'Opacity at Scale',              category: 'Ethics & Fairness',  when: 'Production',          signal: 'No explainability mechanism for consequential decisions.' },
   ],
 };
 /* components.jsx — shared shell components */
@@ -593,308 +666,177 @@ function Footer({ go }) {
 }
 
 Object.assign(window, { Mark, ModeToggle, Header, Page, Container, Eyebrow, Button, Tag, EntryTag, GradRule, Footer, CopyButton });
-/* HomePage.jsx — mode-aware: Product Team | AI Strategist */
+/* HomePage.jsx — Pillar-first internal practice tool */
 
-function HomePage({ go, mode, onModeToggle }) {
-  const { entryPoints } = window.ASPF_DATA;
-  const [hovered, setHovered] = React.useState(null);
+function HomePage({ go }) {
+  const { pillars, aiNativeEnterprise, entryPoints } = window.ASPF_DATA;
+  const [hoveredPillar, setHoveredPillar] = React.useState(null);
+  const [hoveredEntry, setHoveredEntry] = React.useState(null);
 
-  const entryColors = {
-    before: 'var(--entry-before)',
-    during: 'var(--entry-during)',
-    after:  'var(--entry-after)',
-  };
-
-  const entrySteps = {
-    before: ['Qualify the problem', 'Select a method', 'Map risks', 'Define outcomes', 'Audit readiness'],
-    during: ['Detect drift', 'Surface emerging risks', 'Course-correct'],
-    after:  ['Measure outcomes', 'Audit the process', 'Feed forward'],
-  };
-
-  const entryFiles = {
-    before: 'problem-qualification.md',
-    during: 'mid-project-audit.md',
-    after:  'retrospective.md',
-  };
-
-  // ── AI Strategist mode ──────────────────────────────────────────
-  if (mode === 'strategist') {
-    const strategistEntries = [
-      {
-        id: 'assess',
-        color: 'var(--brand-purple-soft)',
-        label: 'Assess',
-        question: 'Where does our AI practice stand today?',
-        desc: 'Evaluate maturity across strategy, data, risk, measurement, and culture. Know exactly where to invest.',
-        skills: ['maturity-model', 'readiness-audit', 'data-strategy'],
-      },
-      {
-        id: 'govern',
-        color: 'var(--brand-orange)',
-        label: 'Govern',
-        question: 'How do we build responsible AI practice across the org?',
-        desc: 'Establish governance structures, responsible AI policies, stakeholder alignment, and risk frameworks.',
-        skills: ['responsible-ai', 'stakeholder-alignment', 'risk-mapping'],
-      },
-      {
-        id: 'advance',
-        color: 'var(--entry-before)',
-        label: 'Advance',
-        question: 'How do we demonstrate value and scale the practice?',
-        desc: 'Define outcomes, measure ROI across initiatives, and build the case for continued AI investment.',
-        skills: ['outcome-definition', 'retrospective', 'phase-routing'],
-      },
-    ];
-
-    return (
-      <Page ambient>
-        <Header active="home" go={go} mode={mode} onModeToggle={onModeToggle} />
-
-        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '80px 48px 0' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--brand-purple-soft)', marginBottom: 12 }}>
-            For AI Strategists
-          </div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(44px, 5.5vw, 72px)', lineHeight: 1.04, letterSpacing: '-0.025em', fontWeight: 600, maxWidth: 860, marginBottom: 0 }}>
-            Build, govern, and advance<br />
-            <span style={{ background: 'linear-gradient(90deg, #C084FC 0%, #E9810C 100%)', backgroundClip: 'text', WebkitBackgroundClip: 'text', color: 'transparent' }}>your AI practice.</span>
-          </h1>
-
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.7, color: 'var(--fg-muted)', maxWidth: 560, marginTop: 32 }}>
-            ASPF gives AI Strategists a structured methodology for assessing organizational AI maturity, establishing governance, and demonstrating compounding value across initiatives.
-          </p>
-
-          {/* Strategist-specific problem framing */}
-          <div style={{ display: 'flex', gap: 32, marginTop: 48, paddingTop: 32, borderTop: '1px solid var(--border)' }}>
-            {[
-              { label: 'The portfolio problem', desc: 'Multiple initiatives, no common way to evaluate them.' },
-              { label: 'The governance gap', desc: 'AI is moving faster than policy and oversight.' },
-              { label: 'The ROI question', desc: 'Leadership wants proof the practice is paying off.' },
-            ].map(p => (
-              <div key={p.label} style={{ flex: 1 }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: 'var(--fg)', marginBottom: 4 }}>{p.label}</div>
-                <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{p.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Three strategist entry points */}
-        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '64px 48px 0' }}>
-          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-dim)', marginBottom: 24 }}>
-            What are you working on?
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
-            {strategistEntries.map(ep => (
-              <div
-                key={ep.id}
-                onClick={() => go('strategist')}
-                onMouseEnter={() => setHovered(ep.id)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  background: hovered === ep.id ? 'var(--elevated)' : 'var(--card)',
-                  border: `1px solid ${hovered === ep.id ? ep.color : 'var(--border)'}`,
-                  borderRadius: 10, padding: '28px 24px 24px',
-                  cursor: 'pointer', transition: 'all 200ms var(--ease-out)',
-                  display: 'flex', flexDirection: 'column', gap: 16, position: 'relative', overflow: 'hidden',
-                }}
-              >
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: ep.color, opacity: hovered === ep.id ? 1 : 0.4, transition: 'opacity 200ms' }} />
-                <Tag color={ep.color} dot>{ep.label}</Tag>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 18, fontWeight: 600, lineHeight: 1.25, color: 'var(--fg)' }}>
-                  {ep.question}
-                </div>
-                <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.6 }}>
-                  {ep.desc}
-                </div>
-                <div style={{ marginTop: 'auto', display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  {ep.skills.map(s => (
-                    <code key={s} style={{ fontFamily: 'var(--font-mono)', fontSize: 9, color: 'var(--fg-faint)', letterSpacing: '0.04em', border: '1px solid var(--border)', padding: '2px 6px', borderRadius: 3 }}>{s}.md</code>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', gap: 16 }}>
-            <Button variant="strategist" onClick={() => go('strategist')}>
-              View the AI Strategist toolkit →
-            </Button>
-            <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-faint)' }}>
-              Curated skills, kickoff prompts, and deck templates for your role.
-            </span>
-          </div>
-        </div>
-
-        {/* How it serves the strategist role */}
-        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '80px 48px 96px' }}>
-          <GradRule />
-          <div style={{ paddingTop: 64, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
-            <div>
-              <Eyebrow style={{ marginBottom: 16 }}>Built for the role</Eyebrow>
-              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 600, lineHeight: 1.2, marginBottom: 14 }}>
-                The framework runs in Claude.<br />The outputs go to leadership.
-              </h2>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--fg-muted)', lineHeight: 1.7, marginBottom: 14 }}>
-                Every skill session produces a structured artifact — risk register, readiness score, responsible AI assessment, outcome brief. Run <code style={{ fontFamily: 'var(--font-mono)', fontSize: 12, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)' }}>/project:deck</code> to generate a stakeholder-ready PowerPoint from any artifact.
-              </p>
-              <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--fg-muted)', lineHeight: 1.7 }}>
-                ASPF is also upstream of APDF — when an initiative is ready to move into product design, <code style={{ fontFamily: 'var(--font-mono)', fontSize: 12, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)' }}>/project:handoff</code> carries the full strategic context into the design workflow.
-              </p>
-              <div style={{ marginTop: 28 }}>
-                <Button onClick={() => go('strategist')}>Open the AI Strategist toolkit →</Button>
-              </div>
-            </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {[
-                { skill: 'maturity-model.md', role: 'Assess', out: 'Six-dimension maturity score + 12-month improvement roadmap' },
-                { skill: 'stakeholder-alignment.md', role: 'Govern', out: 'Stakeholder map + leadership case for AI investment' },
-                { skill: 'responsible-ai.md', role: 'Govern', out: 'Five-principle assessment + regulatory compliance record' },
-                { skill: 'outcome-definition.md', role: 'Advance', out: 'Measurable outcome brief with baselines and guardrails' },
-                { skill: 'retrospective.md', role: 'Advance', out: 'ROI measurement + feed-forward to next initiative' },
-              ].map(r => (
-                <div key={r.skill} style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 12, padding: '12px 16px', background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 6, alignItems: 'start' }}>
-                  <div>
-                    <code style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--brand-orange-soft)' }}>{r.skill}</code>
-                    <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)', lineHeight: 1.4, marginTop: 3 }}>{r.out}</div>
-                  </div>
-                  <Tag color={r.role === 'Assess' ? 'var(--brand-purple-soft)' : r.role === 'Govern' ? 'var(--brand-orange)' : 'var(--entry-before)'}>{r.role}</Tag>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <Footer go={go} />
-      </Page>
-    );
-  }
-
-  // ── Product Team mode (default) ─────────────────────────────────
   return (
-    <Page ambient>
-      <Header active="home" go={go} mode={mode} onModeToggle={onModeToggle} />
-
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '96px 48px 0' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 28 }}>
-          AI Strategy Practice Framework
+    <Page>
+      {/* Minimal internal header */}
+      <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(15,15,15,0.92)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px', height: 56, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <Mark size={22} />
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-muted)', fontWeight: 500 }}>AI Strategy Practice Framework</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)', letterSpacing: '0.08em', marginLeft: 4 }}>— Internal</span>
+          </div>
+          <div style={{ display: 'flex', gap: 16, alignItems: 'center' }}>
+            <button onClick={() => go('skills')} style={{ background: 'none', border: 'none', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-muted)', cursor: 'pointer' }}>Skills</button>
+            <button onClick={() => go('foundation')} style={{ background: 'none', border: 'none', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-muted)', cursor: 'pointer' }}>Foundation</button>
+            <a href="https://github.com/quinrobinson/ai-strategy-practice-framework" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-faint)', textDecoration: 'none' }}>GitHub →</a>
+          </div>
         </div>
+      </header>
 
-        <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(44px, 5.5vw, 76px)', lineHeight: 1.04, letterSpacing: '-0.025em', fontWeight: 600, maxWidth: 900, marginBottom: 0 }}>
-          Stop starting with tools.<br />
-          <span style={{ background: 'linear-gradient(90deg, #C084FC 0%, #E9810C 100%)', backgroundClip: 'text', WebkitBackgroundClip: 'text', color: 'transparent' }}>Start with the right question.</span>
-        </h1>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px' }}>
 
-        <p style={{ fontFamily: 'var(--font-body)', fontSize: 17, lineHeight: 1.7, color: 'var(--fg-muted)', maxWidth: 580, marginTop: 32 }}>
-          ASPF is a decision framework for product teams — run by Claude. It tells you whether to use AI, how to use it, and whether it's working.
-        </p>
-      </div>
-
-      {/* Three entry points */}
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '72px 48px 0' }}>
-        <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-dim)', marginBottom: 24 }}>
-          Where are you right now?
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
-          {entryPoints.map(ep => {
-            const color = entryColors[ep.id];
-            const isHov = hovered === ep.id;
-            return (
-              <div
-                key={ep.id}
-                onClick={() => go(ep.id)}
-                onMouseEnter={() => setHovered(ep.id)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  background: isHov ? 'var(--elevated)' : 'var(--card)',
-                  border: `1px solid ${isHov ? color : 'var(--border)'}`,
-                  borderRadius: ep.id === 'before' ? '12px 4px 4px 12px' : ep.id === 'after' ? '4px 12px 12px 4px' : '4px',
-                  padding: '32px 28px 28px', cursor: 'pointer',
-                  transition: 'all 200ms var(--ease-out)',
-                  display: 'flex', flexDirection: 'column', gap: 20, position: 'relative', overflow: 'hidden',
-                }}
-              >
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: color, opacity: isHov ? 1 : 0.4, transition: 'opacity 200ms' }} />
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.14em', textTransform: 'uppercase', color: color, fontWeight: 500 }}>{ep.label}</span>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 28, fontWeight: 600, color: 'var(--border)', lineHeight: 1 }}>
-                    {ep.id === 'before' ? '01' : ep.id === 'during' ? '02' : '03'}
-                  </span>
-                </div>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 600, lineHeight: 1.25, color: 'var(--fg)' }}>{ep.question}</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                  {entrySteps[ep.id].map((step, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <div style={{ width: 4, height: 4, borderRadius: 999, background: color, opacity: 0.5, flexShrink: 0 }} />
-                      <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1 }}>{step}</span>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ marginTop: 'auto', paddingTop: 16, borderTop: '1px solid var(--border-soft)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <code style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)' }}>{entryFiles[ep.id]}</code>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: isHov ? color : 'var(--fg-muted)', letterSpacing: '0.10em', textTransform: 'uppercase', transition: 'color 200ms' }}>Start →</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        <div style={{ marginTop: 16, display: 'flex', alignItems: 'center', gap: 16 }}>
-          <Button variant="primary" onClick={() => go('diagnose')} style={{ fontSize: 12 }}>
-            I don't know where to start →
-          </Button>
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-faint)' }}>
-            Answer two questions — we'll place you.
-          </span>
-        </div>
-      </div>
-
-      {/* How it works */}
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '96px 48px 0' }}>
-        <GradRule />
-        <div style={{ paddingTop: 64, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+        {/* Orientation strip */}
+        <div style={{ paddingTop: 48, paddingBottom: 40, borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
           <div>
-            <Eyebrow style={{ marginBottom: 16 }}>How it works</Eyebrow>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 32, fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.015em', marginBottom: 16 }}>
-              The framework defines the questions.<br />Claude runs them.
-            </h2>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--fg-muted)', lineHeight: 1.7 }}>
-              The methodology — skill files, decision logic, failure mode library — exists independently. Claude executes it conversationally and adaptively. Describe your situation. Claude places you, routes the session, and flags risks before you hit them.
-            </p>
-            <div style={{ marginTop: 32, display: 'flex', gap: 10 }}>
-              <Button onClick={() => go('diagnose')}>Get started</Button>
-              <Button onClick={() => go('skills')} style={{ color: 'var(--fg-muted)' }}>View skill files</Button>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 10 }}>Practice Methodology</div>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 600, lineHeight: 1.08, letterSpacing: '-0.02em', color: 'var(--fg)' }}>
+              Where are you working?
+            </h1>
+          </div>
+          <div style={{ textAlign: 'right' }}>
+            <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5, maxWidth: 360 }}>
+              Pick your pillar, then your lifecycle stage. ASPF routes you to the right skill and runs the session in Claude.
             </div>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            {[
-              { num: '00', title: 'Entry detection', desc: 'Reads your opening message. Identifies Before, During, or After.' },
-              { num: '01', title: 'Context snapshot', desc: 'Three questions. Domain, team, prior decisions. Predictor starts scanning.' },
-              { num: '02', title: 'Guided intake', desc: 'Framing questions, then adaptive follow-ups. Routes to the right skill in sequence.' },
-              { num: '03', title: 'Clear output', desc: 'Every session ends with a recommendation, a decision, and one next action.' },
-            ].map(l => (
-              <div key={l.num} style={{ display: 'grid', gridTemplateColumns: '36px 1fr', gap: 16, padding: '16px 18px', background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 6 }}>
-                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 13, fontWeight: 600, color: 'var(--border)', paddingTop: 2 }}>{l.num}</span>
-                <div>
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600, color: 'var(--fg)', marginBottom: 4 }}>{l.title}</div>
-                  <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{l.desc}</div>
+        </div>
+
+        {/* Six pillars — primary navigation */}
+        <div style={{ paddingTop: 32 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 2, marginBottom: 2 }}>
+            {pillars.map(pillar => {
+              const isHov = hoveredPillar === pillar.id;
+              return (
+                <button
+                  key={pillar.id}
+                  onClick={() => go(`pillar-${pillar.id}`)}
+                  onMouseEnter={() => setHoveredPillar(pillar.id)}
+                  onMouseLeave={() => setHoveredPillar(null)}
+                  style={{
+                    background: isHov ? `color-mix(in srgb, ${pillar.color} 10%, var(--card))` : 'var(--card)',
+                    border: `1px solid ${isHov ? `color-mix(in srgb, ${pillar.color} 40%, var(--border))` : 'var(--border)'}`,
+                    borderRadius: '8px 8px 0 0',
+                    padding: '20px 16px 18px',
+                    cursor: 'pointer',
+                    transition: 'all 180ms',
+                    textAlign: 'left',
+                    display: 'flex', flexDirection: 'column', gap: 10,
+                    minHeight: 140,
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: pillar.color, opacity: isHov ? 1 : 0.5, transition: 'opacity 180ms' }} />
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 18, fontWeight: 700, color: isHov ? pillar.color : 'var(--border)', lineHeight: 1, transition: 'color 180ms' }}>{pillar.number}</span>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: isHov ? 'var(--fg)' : 'var(--fg-muted)', lineHeight: 1.3, transition: 'color 180ms' }}>{pillar.name}</div>
+                  <div style={{ marginTop: 'auto', fontFamily: 'var(--font-mono)', fontSize: 10, color: isHov ? pillar.color : 'var(--fg-faint)', letterSpacing: '0.08em', transition: 'color 180ms' }}>
+                    {[
+                      ...(pillar.skills.before || []),
+                      ...(pillar.skills.during || []),
+                      ...(pillar.skills.after || []),
+                    ].filter((v, i, a) => a.indexOf(v) === i).length} skills →
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Hover detail panel */}
+          <div style={{ minHeight: 80, padding: '20px 24px', background: 'var(--card)', border: '1px solid var(--border)', borderTop: 'none', borderRadius: '0 0 8px 8px', transition: 'all 200ms' }}>
+            {hoveredPillar ? (() => {
+              const p = pillars.find(p => p.id === hoveredPillar);
+              return (
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 32, alignItems: 'center' }}>
+                  <div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600, color: p.color, marginBottom: 6 }}>{p.name}</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5, maxWidth: 600 }}>{p.desc}</div>
+                  </div>
+                  <button onClick={() => go(`pillar-${p.id}`)} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '10px 20px', borderRadius: 6, background: `color-mix(in srgb, ${p.color} 15%, transparent)`, color: p.color, border: `1px solid color-mix(in srgb, ${p.color} 35%, transparent)`, cursor: 'pointer', flexShrink: 0 }}>
+                    Open pillar →
+                  </button>
                 </div>
+              );
+            })() : (
+              <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-faint)', fontStyle: 'italic' }}>
+                Hover a pillar to see details — click to open.
               </div>
-            ))}
+            )}
           </div>
         </div>
-      </div>
 
-      {/* APDF + footer */}
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '64px 48px 96px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 20, padding: '16px 20px', border: '1px solid var(--border)', borderRadius: 8 }}>
-          <div style={{ width: 1, height: 32, background: 'var(--grad-brand)', borderRadius: 1, flexShrink: 0 }} />
-          <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5 }}>
-            <strong style={{ color: 'var(--fg)', fontWeight: 500 }}>Companion to APDF.</strong> ASPF answers whether and how to use AI. APDF executes the design work. Use <code style={{ fontFamily: 'var(--font-mono)', fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)' }}>/project:handoff</code> to bridge them.
-          </span>
-          <a href="https://github.com/quinrobinson/Agentic-Product-Design-Framework" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)', textDecoration: 'none', flexShrink: 0 }}>APDF →</a>
+        {/* Lifecycle entry points — secondary axis */}
+        <div style={{ paddingTop: 48 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 16 }}>
+            Or start by lifecycle stage
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
+            {[
+              { id: 'before',  color: 'var(--entry-before)', label: 'Before', q: 'Starting or scoping an engagement', desc: 'Qualify, plan, and prepare before committing resources. Runs problem qualification, method selection, responsible AI, risk mapping, outcome definition, and readiness audit.' },
+              { id: 'during',  color: 'var(--entry-during)', label: 'During', q: 'Active engagement — checking in', desc: 'Audit progress, detect drift, surface risks before they become failures. Runs mid-project audit, model monitoring, and user feedback loops.' },
+              { id: 'after',   color: 'var(--entry-after)',  label: 'After',  q: 'Engagement concluded — evaluating', desc: 'Measure outcomes against intentions, extract lessons, feed forward to the next engagement. Runs retrospective and maturity model.' },
+            ].map(ep => {
+              const isHov = hoveredEntry === ep.id;
+              return (
+                <div
+                  key={ep.id}
+                  onClick={() => go(ep.id)}
+                  onMouseEnter={() => setHoveredEntry(ep.id)}
+                  onMouseLeave={() => setHoveredEntry(null)}
+                  style={{ padding: '20px 22px', background: isHov ? 'var(--elevated)' : 'var(--card)', border: `1px solid ${isHov ? ep.color : 'var(--border)'}`, borderRadius: 8, cursor: 'pointer', transition: 'all 180ms', display: 'flex', flexDirection: 'column', gap: 10, position: 'relative', overflow: 'hidden' }}
+                >
+                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: ep.color, opacity: isHov ? 1 : 0.35 }} />
+                  <Tag color={ep.color} dot>{ep.label}</Tag>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600, color: 'var(--fg)', lineHeight: 1.3 }}>{ep.q}</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)', lineHeight: 1.55 }}>{ep.desc}</div>
+                </div>
+              );
+            })}
+          </div>
+
+          <div style={{ marginTop: 10 }}>
+            <button onClick={() => go('diagnose')} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '10px 18px', borderRadius: 6, background: 'transparent', color: 'var(--fg-muted)', border: '1px solid var(--border)', cursor: 'pointer' }}>
+              Not sure where to start — run the diagnostic →
+            </button>
+          </div>
         </div>
+
+        {/* AI-Native Enterprise — foundational context */}
+        <div style={{ paddingTop: 56, paddingBottom: 64 }}>
+          <GradRule />
+          <div style={{ paddingTop: 48 }}>
+            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 16 }}>North Star</div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: 64, alignItems: 'start' }}>
+              <div>
+                <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 24, fontWeight: 600, lineHeight: 1.2, letterSpacing: '-0.01em', marginBottom: 14 }}>
+                  What is an AI-native enterprise?
+                </h2>
+                <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.65 }}>
+                  {aiNativeEnterprise.definition}
+                </p>
+                <button onClick={() => go('foundation')} style={{ marginTop: 20, fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '8px 16px', borderRadius: 6, background: 'transparent', color: 'var(--fg-muted)', border: '1px solid var(--border)', cursor: 'pointer' }}>
+                  View foundation →
+                </button>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
+                {aiNativeEnterprise.shifts.map((shift, i) => (
+                  <div key={shift.id} style={{ padding: '18px 18px', background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 8, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)', letterSpacing: '0.08em' }}>Shift {i + 1}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: 'var(--fg)', lineHeight: 1.3 }}>{shift.label}</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{shift.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <Footer go={go} />
@@ -1248,257 +1190,405 @@ Then begin the retrospective skill. Produce a feed-forward block at the close th
 }
 
 window.StartPage = StartPage;
-/* StrategistPage.jsx — AI Strategist dedicated toolkit */
+/* PillarPage.jsx — per-pillar view with Before/During/After skill routing */
 
-function StrategistPage({ go, mode, onModeToggle }) {
-  const [activeEntry, setActiveEntry] = React.useState('assess');
+function PillarPage({ go, pillarId }) {
+  const { pillars, skills, aiNativeEnterprise } = window.ASPF_DATA;
+  const pillar = pillars.find(p => p.id === pillarId);
+  const [activeLifecycle, setActiveLifecycle] = React.useState('before');
   const [surface, setSurface] = React.useState(null);
-  const [copied, setCopied] = React.useState(false);
 
-  const entries = [
-    {
-      id: 'assess',
-      label: 'Assess',
-      color: 'var(--brand-purple-soft)',
-      question: 'Where does our AI practice stand today?',
-      desc: 'Evaluate current maturity, identify capability gaps, and build a prioritized improvement roadmap.',
-      skills: [
-        { file: 'maturity-model.md', label: 'Six-dimension AI practice maturity assessment' },
-        { file: 'readiness-audit.md', label: 'Initiative-level readiness across people, data, tooling, process' },
-        { file: 'data-strategy.md', label: 'Data governance, lineage, consent, and quality audit' },
-      ],
-      startFile: 'maturity-model.md',
-      startCmd: '/project:diagnose',
-    },
-    {
-      id: 'govern',
-      label: 'Govern',
-      color: 'var(--brand-orange)',
-      question: 'How do we build responsible AI practice across the org?',
-      desc: 'Establish governance structures, align stakeholders, map risks, and create a responsible AI record.',
-      skills: [
-        { file: 'responsible-ai.md', label: 'Five-principle responsible AI checklist with regulatory mapping' },
-        { file: 'stakeholder-alignment.md', label: 'Stakeholder map, resistance analysis, and leadership case' },
-        { file: 'risk-mapping.md', label: 'AI risk register across technical, ethical, org, and legal dimensions' },
-      ],
-      startFile: 'stakeholder-alignment.md',
-      startCmd: '/project:diagnose',
-    },
-    {
-      id: 'advance',
-      label: 'Advance',
-      color: 'var(--entry-before)',
-      question: 'How do we demonstrate value and scale the practice?',
-      desc: 'Define measurable outcomes, evaluate initiative ROI, and build the compounding case for AI investment.',
-      skills: [
-        { file: 'outcome-definition.md', label: 'Hypothesis-format outcomes with baselines, targets, and guardrails' },
-        { file: 'retrospective.md', label: 'ROI measurement against original intent, feed-forward to next initiative' },
-        { file: 'phase-routing.md', label: 'Bridge strategy outputs into APDF for design execution' },
-      ],
-      startFile: 'outcome-definition.md',
-      startCmd: '/project:diagnose',
-    },
-  ];
+  if (!pillar) return null;
 
-  const active = entries.find(e => e.id === activeEntry);
+  const color = pillar.color;
 
-  const strategistChatPrompts = {
-    assess: `You are running the AI Strategy Practice Framework (ASPF) in AI Strategist mode.
-
-My focus is: ASSESS — I need to evaluate our organization's current AI practice maturity and identify where to invest.
-
-Start by asking me three context questions together:
-1. What industry or domain are you operating in?
-2. How many AI initiatives has your organization run in the past 12 months?
-3. Who is your primary audience for this assessment — the board, a leadership team, or an internal practice team?
-
-Then begin with the maturity-model skill. Work through each of the six dimensions (strategy, problem definition, data, risk, measurement, culture) and produce a scored assessment with a prioritized 12-month improvement roadmap.
-
-At the end, ask if I want to generate a stakeholder-ready PowerPoint deck from the output.`,
-
-    govern: `You are running the AI Strategy Practice Framework (ASPF) in AI Strategist mode.
-
-My focus is: GOVERN — I need to establish responsible AI governance and align stakeholders around our AI practice.
-
-Start by asking me three context questions together:
-1. What is the scope — a single team, a department, or the whole organization?
-2. Are there specific regulatory or compliance requirements in play (EU AI Act, GDPR, HIPAA, etc.)?
-3. Who are the key stakeholders I need to move — and what is their current stance on AI?
-
-Then begin with the stakeholder-alignment skill, followed by responsible-ai, then risk-mapping. Each produces a structured artifact. At the end of each session, I will use /project:deck to generate a governance presentation.`,
-
-    advance: `You are running the AI Strategy Practice Framework (ASPF) in AI Strategist mode.
-
-My focus is: ADVANCE — I need to define measurable outcomes for AI initiatives and demonstrate the value of the AI practice to leadership.
-
-Start by asking me three context questions together:
-1. Are you defining outcomes for a new initiative, or measuring outcomes for a completed one?
-2. Who needs to see these results — the board, a VP, or a team lead?
-3. What does leadership currently believe about the ROI of AI in your organization?
-
-Then begin with outcome-definition (for new initiatives) or retrospective (for completed ones). Every output should be framed in business terms — not AI system metrics. At the end, I will use /project:deck to generate a leadership presentation.`,
+  const lifecycleSkills = (stage) => {
+    const ids = pillar.skills[stage] || [];
+    return ids.map(id => skills.find(s => s.id === id)).filter(Boolean);
   };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(strategistChatPrompts[activeEntry]).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+  const allSkillIds = [
+    ...(pillar.skills.before || []),
+    ...(pillar.skills.during || []),
+    ...(pillar.skills.after || []),
+  ].filter((v, i, a) => a.indexOf(v) === i);
+
+  const totalSkills = allSkillIds.length;
+  const gaps = pillar.gaps || [];
+
+  const lifecycleColors = {
+    before: 'var(--entry-before)',
+    during: 'var(--entry-during)',
+    after:  'var(--entry-after)',
   };
 
-  const color = active.color;
+  const lifecycleLabels = {
+    before: 'Before — Starting or scoping',
+    during: 'During — Active engagement',
+    after:  'After — Evaluating outcomes',
+  };
+
+  const chatPrompts = {
+    before: `You are running the AI Strategy Practice Framework (ASPF) — an internal practice methodology for AI consulting engagements.
+
+Pillar: ${pillar.number} — ${pillar.name}
+Lifecycle stage: BEFORE — Starting or scoping an engagement
+
+Pillar description: ${pillar.desc}
+
+Skills available for this pillar at the Before stage:
+${(pillar.skills.before || []).map((id, i) => `${String(i+1).padStart(2,'0')} — ${id}.md`).join('\n')}
+
+Start by asking me three context questions together:
+1. What is the client's industry and organizational size?
+2. What has already been scoped or decided for this engagement?
+3. What is the primary deliverable the client expects from this pillar?
+
+Then begin with the first skill in sequence. Work through one skill at a time. At the end of each skill, produce a structured artifact and ask if I'm ready to proceed to the next step. When a skill output is stakeholder-ready, suggest running /project:deck to generate a PowerPoint.`,
+
+    during: `You are running the AI Strategy Practice Framework (ASPF) — an internal practice methodology for AI consulting engagements.
+
+Pillar: ${pillar.number} — ${pillar.name}
+Lifecycle stage: DURING — Active engagement, checking in
+
+Pillar description: ${pillar.desc}
+
+Skills available for this pillar at the During stage:
+${(pillar.skills.during || []).map((id, i) => `${String(i+1).padStart(2,'0')} — ${id}.md`).join('\n')}
+
+Start by asking me three context questions together:
+1. What is the AI system or initiative currently doing?
+2. What were you expecting at this stage of the engagement?
+3. What prompted this check-in — a specific concern or routine audit?
+
+Then begin with the mid-project-audit. Produce a clear Continue / Pivot / Stop recommendation with owned actions.`,
+
+    after: `You are running the AI Strategy Practice Framework (ASPF) — an internal practice methodology for AI consulting engagements.
+
+Pillar: ${pillar.number} — ${pillar.name}
+Lifecycle stage: AFTER — Engagement concluded, evaluating outcomes
+
+Pillar description: ${pillar.desc}
+
+Skills available for this pillar at the After stage:
+${(pillar.skills.after || []).map((id, i) => `${String(i+1).padStart(2,'0')} — ${id}.md`).join('\n')}
+
+Start by asking me three context questions together:
+1. What was the scope of this engagement and how long did it run?
+2. Do you have the original outcome statement or success criteria?
+3. How would you describe the result in your own words?
+
+Then begin with the retrospective. Produce a feed-forward block at the close — lessons that should carry into the next engagement on this pillar.`,
+  };
 
   return (
     <Page>
-      <Header active="strategist" go={go} mode={mode} onModeToggle={onModeToggle} />
+      {/* Header */}
+      <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(15,15,15,0.92)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px', height: 56, display: 'flex', alignItems: 'center', gap: 16 }}>
+          <button onClick={() => go('home')} style={{ background: 'none', border: 'none', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-muted)', cursor: 'pointer' }}>← Pillars</button>
+          <div style={{ width: 1, height: 16, background: 'var(--border)' }} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: color, letterSpacing: '0.08em' }}>{pillar.number}</span>
+            <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-muted)' }}>{pillar.name}</span>
+          </div>
+          <div style={{ marginLeft: 'auto', display: 'flex', gap: 16 }}>
+            <button onClick={() => go('skills')} style={{ background: 'none', border: 'none', fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)', cursor: 'pointer', letterSpacing: '0.12em', textTransform: 'uppercase' }}>All Skills</button>
+            <a href="https://github.com/quinrobinson/ai-strategy-practice-framework" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-faint)', textDecoration: 'none' }}>GitHub →</a>
+          </div>
+        </div>
+      </header>
 
-      <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 48px' }}>
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px' }}>
 
-        {/* Back + breadcrumb */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 12, paddingTop: 28, marginBottom: 40 }}>
-          <button onClick={() => go('home')} style={{ background: 'none', border: 'none', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-muted)', cursor: 'pointer' }}>← Home</button>
-          <span style={{ color: 'var(--fg-faint)' }}>/</span>
-          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand-purple-soft)' }}>AI Strategist</span>
+        {/* Pillar header */}
+        <div style={{ paddingTop: 48, paddingBottom: 40, borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: color, letterSpacing: '0.14em', marginBottom: 12 }}>Pillar {pillar.number}</div>
+              <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 16 }}>
+                {pillar.name}
+              </h1>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--fg-muted)', lineHeight: 1.65 }}>{pillar.desc}</p>
+            </div>
+            <div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 12 }}>Focus areas</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {pillar.focus.map(f => (
+                  <div key={f} style={{ display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                    <div style={{ width: 4, height: 4, borderRadius: 999, background: color, flexShrink: 0, marginTop: 6, opacity: 0.6 }} />
+                    <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{f}</span>
+                  </div>
+                ))}
+              </div>
+              {pillar.products && (
+                <div style={{ marginTop: 16 }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 8 }}>Specific products</div>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                    {pillar.products.map(p => (
+                      <Tag key={p} color={color}>{p}</Tag>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
-        {/* Header */}
-        <div style={{ marginBottom: 56 }}>
-          <Eyebrow color="var(--brand-purple-soft)" style={{ marginBottom: 14 }}>AI Strategist Toolkit</Eyebrow>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(32px, 4vw, 52px)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 14 }}>
-            Your structured methodology<br />for building AI practice.
-          </h1>
-          <p style={{ fontFamily: 'var(--font-body)', fontSize: 15, color: 'var(--fg-muted)', lineHeight: 1.65, maxWidth: 560 }}>
-            Fifteen skill files organized around the three jobs of an AI Strategist — assess the current state, establish governance, and advance the practice. Every skill produces a stakeholder-ready artifact.
-          </p>
-        </div>
+        {/* Lifecycle tabs */}
+        <div style={{ paddingTop: 40 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 16 }}>
+            Select lifecycle stage
+          </div>
 
-        <GradRule />
-
-        {/* Three entry tabs */}
-        <div style={{ marginTop: 40 }}>
           <div style={{ display: 'flex', gap: 2, marginBottom: 2 }}>
-            {entries.map(e => (
-              <button
-                key={e.id}
-                onClick={() => { setActiveEntry(e.id); setSurface(null); }}
-                style={{
-                  flex: 1, padding: '16px 20px', textAlign: 'left',
-                  background: activeEntry === e.id ? `color-mix(in srgb, ${e.color} 8%, var(--card))` : 'var(--card)',
-                  border: `1px solid ${activeEntry === e.id ? `color-mix(in srgb, ${e.color} 35%, var(--border))` : 'var(--border)'}`,
-                  borderBottom: activeEntry === e.id ? `1px solid ${`color-mix(in srgb, ${e.color} 35%, var(--border))`}` : '1px solid transparent',
-                  borderRadius: '8px 8px 0 0', cursor: 'pointer', transition: 'all 200ms',
-                  display: 'flex', flexDirection: 'column', gap: 6,
-                }}
+            {['before', 'during', 'after'].map(stage => {
+              const lc = lifecycleColors[stage];
+              const isActive = activeLifecycle === stage;
+              const count = (pillar.skills[stage] || []).length;
+              return (
+                <button
+                  key={stage}
+                  onClick={() => { setActiveLifecycle(stage); setSurface(null); }}
+                  style={{
+                    flex: 1, padding: '14px 20px', textAlign: 'left',
+                    background: isActive ? `color-mix(in srgb, ${lc} 7%, var(--card))` : 'var(--card)',
+                    border: `1px solid ${isActive ? `color-mix(in srgb, ${lc} 30%, var(--border))` : 'var(--border)'}`,
+                    borderBottom: isActive ? `1px solid ${`color-mix(in srgb, ${lc} 30%, var(--border))`}` : '1px solid transparent',
+                    borderRadius: '8px 8px 0 0', cursor: 'pointer', transition: 'all 180ms',
+                    display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                  }}
+                >
+                  <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+                    <span style={{ width: 6, height: 6, borderRadius: 999, background: lc, flexShrink: 0, opacity: isActive ? 1 : 0.4 }} />
+                    <span style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: isActive ? 'var(--fg)' : 'var(--fg-muted)' }}>{lifecycleLabels[stage]}</span>
+                  </div>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: isActive ? lc : 'var(--fg-faint)' }}>{count} skill{count !== 1 ? 's' : ''}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active lifecycle content */}
+          <div style={{ border: `1px solid color-mix(in srgb, ${lifecycleColors[activeLifecycle]} 20%, var(--border))`, borderRadius: '0 0 10px 10px', background: `color-mix(in srgb, ${lifecycleColors[activeLifecycle]} 3%, var(--card))`, padding: '28px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40 }}>
+
+              {/* Skills */}
+              <div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 14 }}>Skill sequence</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                  {lifecycleSkills(activeLifecycle).map((skill, i) => (
+                    <div key={skill.id} style={{ display: 'grid', gridTemplateColumns: '28px 1fr', gap: 12, padding: '12px 14px', background: i === 0 ? `color-mix(in srgb, ${color} 7%, var(--bg))` : 'var(--bg)', border: `1px solid ${i === 0 ? `color-mix(in srgb, ${color} 25%, var(--border))` : 'var(--border)'}`, borderRadius: 6, alignItems: 'center' }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, color: i === 0 ? color : 'var(--border)' }}>{String(i+1).padStart(2,'0')}</span>
+                      <div>
+                        <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 500, color: i === 0 ? 'var(--fg)' : 'var(--fg-muted)', marginBottom: 2 }}>{skill.goal}</div>
+                        <code style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)' }}>{skill.file}</code>
+                      </div>
+                    </div>
+                  ))}
+                  {lifecycleSkills(activeLifecycle).length === 0 && (
+                    <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-faint)', fontStyle: 'italic', padding: '12px 0' }}>No skills mapped to this stage yet.</div>
+                  )}
+                </div>
+              </div>
+
+              {/* Surface + prompt */}
+              <div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 14 }}>How are you running Claude?</div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 20 }}>
+                  {[
+                    { id: 'chat', label: 'Claude Chat', sub: 'claude.ai — copy the kickoff prompt' },
+                    { id: 'code', label: 'Claude Code', sub: 'Command line — skill files load automatically' },
+                  ].map(opt => (
+                    <button key={opt.id} onClick={() => setSurface(opt.id)} style={{ textAlign: 'left', background: surface === opt.id ? `color-mix(in srgb, ${color} 8%, var(--card))` : 'var(--card)', border: `1px solid ${surface === opt.id ? color : 'var(--border)'}`, borderRadius: 7, padding: '12px 14px', cursor: 'pointer', transition: 'all 180ms' }}>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: 'var(--fg)', marginBottom: 2 }}>{opt.label}</div>
+                      <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)' }}>{opt.sub}</div>
+                    </button>
+                  ))}
+                </div>
+
+                {surface === 'chat' && (
+                  <div style={{ border: `1px solid color-mix(in srgb, ${color} 20%, var(--border))`, borderRadius: 8, overflow: 'hidden' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '9px 12px', borderBottom: '1px solid var(--border)', background: 'var(--bg)' }}>
+                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-faint)' }}>Kickoff prompt — paste into Claude Chat</span>
+                      <CopyButton text={chatPrompts[activeLifecycle]} color={color} />
+                    </div>
+                    <pre style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-muted)', lineHeight: 1.6, padding: '12px', margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-word', maxHeight: 160, overflowY: 'auto', background: 'var(--bg)' }}>{chatPrompts[activeLifecycle]}</pre>
+                    <div style={{ padding: '10px 12px', borderTop: '1px solid var(--border)', background: 'var(--bg)' }}>
+                      <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '7px 14px', borderRadius: 5, background: `color-mix(in srgb, ${color} 15%, transparent)`, color: color, border: `1px solid color-mix(in srgb, ${color} 30%, transparent)`, textDecoration: 'none', display: 'inline-block' }}>
+                        Open Claude →
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                {surface === 'code' && (
+                  <div style={{ border: `1px solid color-mix(in srgb, ${color} 20%, var(--border))`, borderRadius: 8, padding: '16px' }}>
+                    {[
+                      { n: '01', content: <>Open project in Claude Code: <code style={{ fontFamily: 'var(--font-mono)', fontSize: 10, padding: '1px 4px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)' }}>claude</code></> },
+                      { n: '02', content: <>{activeLifecycle === 'before' ? <><code style={{ fontFamily: 'var(--font-mono)', fontSize: 10, padding: '1px 4px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)', color: color }}>/project:diagnose</code> — specify pillar {pillar.number}</> : activeLifecycle === 'during' ? <><code style={{ fontFamily: 'var(--font-mono)', fontSize: 10, padding: '1px 4px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)', color: color }}>/project:audit</code> — describe the current state</> : <><code style={{ fontFamily: 'var(--font-mono)', fontSize: 10, padding: '1px 4px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)', color: color }}>/project:retro</code> — describe what concluded</>}</> },
+                      { n: '03', content: <><code style={{ fontFamily: 'var(--font-mono)', fontSize: 10, padding: '1px 4px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)', color: 'var(--brand-orange-soft)' }}>/project:deck [skill]</code> to generate a stakeholder PowerPoint</> },
+                    ].map(s => (
+                      <div key={s.n} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 12 }}>
+                        <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: color, flexShrink: 0, paddingTop: 2 }}>{s.n}</span>
+                        <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{s.content}</span>
+                      </div>
+                    ))}
+                    <a href="https://github.com/quinrobinson/ai-strategy-practice-framework" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '7px 14px', borderRadius: 5, background: `color-mix(in srgb, ${color} 15%, transparent)`, color: color, border: `1px solid color-mix(in srgb, ${color} 30%, transparent)`, textDecoration: 'none', display: 'inline-block' }}>
+                      Clone repo →
+                    </a>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Gaps */}
+            {gaps.length > 0 && (
+              <div style={{ marginTop: 24, padding: '14px 16px', border: '1px dashed var(--border)', borderRadius: 8, display: 'flex', alignItems: 'center', gap: 12 }}>
+                <span style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-faint)' }}>Skills in progress</span>
+                {gaps.map(g => <code key={g} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)', border: '1px dashed var(--border)', padding: '2px 7px', borderRadius: 3 }}>{g}.md</code>)}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Pillar navigation — quick jump to others */}
+        <div style={{ paddingTop: 40, paddingBottom: 64 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 14 }}>Other pillars</div>
+          <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+            {pillars.filter(p => p.id !== pillarId).map(p => (
+              <button key={p.id} onClick={() => go(`pillar-${p.id}`)} style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '7px 14px', borderRadius: 5, background: 'transparent', color: 'var(--fg-muted)', border: `1px solid var(--border)`, cursor: 'pointer', transition: 'all 150ms' }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = p.color; e.currentTarget.style.color = p.color; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--fg-muted)'; }}
               >
-                <Tag color={e.color} dot style={{ alignSelf: 'flex-start' }}>{e.label}</Tag>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600, color: activeEntry === e.id ? 'var(--fg)' : 'var(--fg-muted)', lineHeight: 1.3 }}>{e.question}</div>
+                {p.number} — {p.shortName}
               </button>
             ))}
           </div>
-
-          {/* Active entry detail */}
-          <div style={{ border: `1px solid color-mix(in srgb, ${color} 25%, var(--border))`, borderRadius: '0 0 10px 10px', background: `color-mix(in srgb, ${color} 4%, var(--card))`, padding: '28px 28px' }}>
-            <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.65, marginBottom: 24, maxWidth: 600 }}>{active.desc}</p>
-
-            {/* Skills for this entry */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 2, marginBottom: 32 }}>
-              {active.skills.map((s, i) => (
-                <div key={s.file} style={{ display: 'grid', gridTemplateColumns: '32px 1fr', gap: 14, padding: '14px 16px', background: i === 0 ? `color-mix(in srgb, ${color} 8%, var(--bg))` : 'var(--bg)', border: `1px solid ${i === 0 ? `color-mix(in srgb, ${color} 25%, var(--border))` : 'var(--border)'}`, borderRadius: 6, alignItems: 'center' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, color: i === 0 ? color : 'var(--border)' }}>
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div>
-                    <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, fontWeight: 500, color: i === 0 ? 'var(--fg)' : 'var(--fg-muted)', marginBottom: 2 }}>{s.label}</div>
-                    <code style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)' }}>{s.file}</code>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Surface picker */}
-            <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 12 }}>
-              How are you using Claude?
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 24 }}>
-              {[
-                { id: 'chat', label: 'Claude Chat', sub: 'claude.ai — copy the kickoff prompt' },
-                { id: 'code', label: 'Claude Code', sub: 'Command line — skill files load from the repo' },
-              ].map(opt => (
-                <button
-                  key={opt.id}
-                  onClick={() => setSurface(opt.id)}
-                  style={{
-                    textAlign: 'left',
-                    background: surface === opt.id ? `color-mix(in srgb, ${color} 10%, var(--card))` : 'var(--card)',
-                    border: `1px solid ${surface === opt.id ? color : 'var(--border)'}`,
-                    borderRadius: 8, padding: '14px 16px', cursor: 'pointer', transition: 'all 200ms',
-                  }}
-                >
-                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: 'var(--fg)', marginBottom: 3 }}>{opt.label}</div>
-                  <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)' }}>{opt.sub}</div>
-                </button>
-              ))}
-            </div>
-
-            {/* Instructions */}
-            {surface === 'chat' && (
-              <div style={{ border: `1px solid color-mix(in srgb, ${color} 20%, var(--border))`, borderRadius: 8, overflow: 'hidden' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 14px', borderBottom: '1px solid var(--border)', background: 'var(--bg)' }}>
-                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.10em', textTransform: 'uppercase', color: 'var(--fg-faint)' }}>Strategist kickoff prompt — {active.label}</span>
-                  <CopyButton text={strategistChatPrompts[activeEntry]} color={color} />
-                </div>
-                <pre style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--fg-muted)', lineHeight: 1.6, padding: '14px', margin: 0, whiteSpace: 'pre-wrap', wordBreak: 'break-word', maxHeight: 200, overflowY: 'auto', background: 'var(--bg)' }}>{strategistChatPrompts[activeEntry]}</pre>
-                <div style={{ padding: '12px 14px', borderTop: '1px solid var(--border)', background: 'var(--bg)' }}>
-                  <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '8px 16px', borderRadius: 6, background: `color-mix(in srgb, ${color} 18%, transparent)`, color: color, border: `1px solid color-mix(in srgb, ${color} 35%, transparent)`, textDecoration: 'none', display: 'inline-block' }}>
-                    Open Claude →
-                  </a>
-                </div>
-              </div>
-            )}
-
-            {surface === 'code' && (
-              <div style={{ border: `1px solid color-mix(in srgb, ${color} 20%, var(--border))`, borderRadius: 8, padding: '20px' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginBottom: 20 }}>
-                  {[
-                    { n: '01', content: <>Clone the repo and open in Claude Code: <code style={{ fontFamily: 'var(--font-mono)', fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)' }}>claude</code></> },
-                    { n: '02', content: <>Run <code style={{ fontFamily: 'var(--font-mono)', fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)', color: color }}>{active.startCmd}</code> and describe your {active.label.toLowerCase()} focus</> },
-                    { n: '03', content: <>Use <code style={{ fontFamily: 'var(--font-mono)', fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)', color: 'var(--brand-orange-soft)' }}>/project:deck [skill]</code> to generate a stakeholder-ready PowerPoint</> },
-                  ].map(s => (
-                    <div key={s.n} style={{ display: 'flex', gap: 14, alignItems: 'flex-start' }}>
-                      <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: color, flexShrink: 0, paddingTop: 2 }}>{s.n}</span>
-                      <span style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{s.content}</span>
-                    </div>
-                  ))}
-                </div>
-                <a href="https://github.com/quinrobinson/ai-strategy-practice-framework" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '10px 18px', borderRadius: 6, background: `color-mix(in srgb, ${color} 18%, transparent)`, color: color, border: `1px solid color-mix(in srgb, ${color} 35%, transparent)`, textDecoration: 'none', display: 'inline-block' }}>
-                  Clone repo →
-                </a>
-              </div>
-            )}
-          </div>
         </div>
 
-        {/* PowerPoint callout */}
-        <div style={{ marginTop: 48, padding: '20px 24px', border: '1px solid var(--border)', borderRadius: 10, background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 24 }}>
-          <div>
-            <div style={{ fontFamily: 'var(--font-display)', fontSize: 14, fontWeight: 600, marginBottom: 4 }}>Every artifact generates a deck.</div>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5 }}>
-              Run <code style={{ fontFamily: 'var(--font-mono)', fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)', color: 'var(--brand-orange-soft)' }}>/project:deck [skill]</code> in Claude Code to generate a .pptx file from any skill output. Claude Chat users get a structured prompt to paste into a new conversation.
-            </div>
-          </div>
-          <Button onClick={() => go('skills')} style={{ flexShrink: 0 }}>View all skills →</Button>
-        </div>
-
-        {/* Bottom padding */}
-        <div style={{ height: 96 }} />
       </div>
-
       <Footer go={go} />
     </Page>
   );
 }
 
-window.StrategistPage = StrategistPage;
+window.PillarPage = PillarPage;
+/* FoundationPage.jsx — AI-Native Enterprise foundation and six pillars */
+
+function FoundationPage({ go }) {
+  const { aiNativeEnterprise, pillars } = window.ASPF_DATA;
+
+  return (
+    <Page>
+      <header style={{ position: 'sticky', top: 0, zIndex: 100, background: 'rgba(15,15,15,0.92)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)', borderBottom: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px', height: 56, display: 'flex', alignItems: 'center', gap: 16 }}>
+          <button onClick={() => go('home')} style={{ background: 'none', border: 'none', fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-muted)', cursor: 'pointer' }}>← Home</button>
+          <div style={{ width: 1, height: 16, background: 'var(--border)' }} />
+          <span style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-muted)' }}>Foundation</span>
+        </div>
+      </header>
+
+      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 48px' }}>
+
+        {/* What is an AI-native enterprise */}
+        <div style={{ paddingTop: 56, paddingBottom: 48, borderBottom: '1px solid var(--border)' }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 16 }}>North Star</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 80, alignItems: 'start' }}>
+            <div>
+              <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px, 3.5vw, 44px)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '-0.02em', marginBottom: 20 }}>
+                What is an AI-native enterprise?
+              </h1>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 16, color: 'var(--fg-muted)', lineHeight: 1.7 }}>
+                {aiNativeEnterprise.definition}
+              </p>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.7, marginTop: 14 }}>
+                It is a new model where agents are the default workers across front, middle, and back-office processes. Every engagement we run should move a client measurably toward this state.
+              </p>
+            </div>
+            <div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 16 }}>Three defining shifts</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                {aiNativeEnterprise.shifts.map((shift, i) => (
+                  <div key={shift.id} style={{ padding: '20px 22px', background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 8, display: 'flex', gap: 20, alignItems: 'flex-start' }}>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 22, fontWeight: 700, color: 'var(--border)', lineHeight: 1, flexShrink: 0, marginTop: 2 }}>{String(i+1).padStart(2,'0')}</div>
+                    <div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 600, color: 'var(--fg)', marginBottom: 4 }}>{shift.label}</div>
+                      <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--brand-purple-soft)', marginBottom: 6 }}>{shift.sub}</div>
+                      <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.55 }}>{shift.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Six pillars overview */}
+        <div style={{ paddingTop: 56, paddingBottom: 64 }}>
+          <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 8 }}>Practice Architecture</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 28 }}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 28, fontWeight: 600, lineHeight: 1.15, letterSpacing: '-0.015em' }}>
+              6 AI Practice Pillars
+            </h2>
+            <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)' }}>The single thread of AI across all service lines</div>
+          </div>
+
+          {/* Full pillar matrix */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 2, marginBottom: 24 }}>
+            {pillars.map(p => (
+              <div key={p.id} style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {/* Number header */}
+                <div style={{ padding: '10px 14px', background: `color-mix(in srgb, ${p.color} 12%, var(--card))`, border: `1px solid color-mix(in srgb, ${p.color} 25%, var(--border))`, borderBottom: 'none', borderRadius: '8px 8px 0 0', textAlign: 'center' }}>
+                  <span style={{ fontFamily: 'var(--font-mono)', fontSize: 18, fontWeight: 700, color: p.color }}>{p.number}</span>
+                </div>
+                {/* Name + desc */}
+                <div style={{ padding: '14px 14px', background: 'var(--card)', border: `1px solid color-mix(in srgb, ${p.color} 15%, var(--border))`, borderTop: 'none', flex: 1 }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: 'var(--fg)', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: 8, lineHeight: 1.2 }}>{p.name}</div>
+                  <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)', lineHeight: 1.5, marginBottom: 12 }}>{p.desc}</div>
+                </div>
+                {/* Focus */}
+                <div style={{ padding: '12px 14px', background: 'var(--card)', border: `1px solid color-mix(in srgb, ${p.color} 15%, var(--border))`, borderTop: 'none' }}>
+                  <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 8 }}>Focus</div>
+                  {p.focus.map(f => (
+                    <div key={f} style={{ display: 'flex', gap: 6, alignItems: 'flex-start', marginBottom: 5 }}>
+                      <div style={{ width: 3, height: 3, borderRadius: 999, background: p.color, flexShrink: 0, marginTop: 5, opacity: 0.6 }} />
+                      <span style={{ fontFamily: 'var(--font-body)', fontSize: 11, color: 'var(--fg-muted)', lineHeight: 1.4 }}>{f}</span>
+                    </div>
+                  ))}
+                </div>
+                {/* Products if any */}
+                {p.products && (
+                  <div style={{ padding: '10px 14px', background: 'var(--card)', border: `1px solid color-mix(in srgb, ${p.color} 15%, var(--border))`, borderTop: 'none' }}>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 6 }}>Products</div>
+                    {p.products.map(prod => (
+                      <div key={prod} style={{ fontFamily: 'var(--font-body)', fontSize: 10, color: p.color, marginBottom: 3, lineHeight: 1.3 }}>• {prod}</div>
+                    ))}
+                  </div>
+                )}
+                {/* CTA */}
+                <button onClick={() => go(`pillar-${p.id}`)} style={{ padding: '10px 14px', background: `color-mix(in srgb, ${p.color} 8%, var(--card))`, border: `1px solid color-mix(in srgb, ${p.color} 20%, var(--border))`, borderTop: 'none', borderRadius: '0 0 8px 8px', cursor: 'pointer', fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: p.color, textAlign: 'center', transition: 'all 150ms' }}>
+                  Open pillar →
+                </button>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ padding: '14px 20px', border: '1px solid var(--border)', borderRadius: 8, background: 'var(--card)', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)' }}>The AI practice is the single thread of AI across all service lines and partners.</span>
+            <button onClick={() => go('home')} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '8px 16px', borderRadius: 6, background: 'transparent', color: 'var(--fg-muted)', border: '1px solid var(--border)', cursor: 'pointer' }}>
+              Back to pillars →
+            </button>
+          </div>
+        </div>
+
+      </div>
+      <Footer go={go} />
+    </Page>
+  );
+}
+
+window.FoundationPage = FoundationPage;
 /* SkillsPage.jsx */
 
 function SkillsPage({ go }) {
@@ -1936,42 +2026,33 @@ function DecisionTreePage({ go }) {
 }
 
 window.DecisionTreePage = DecisionTreePage;
-/* app.jsx — router + mode state */
+/* app.jsx — pillar-first router, no mode toggle */
 
 function App() {
   const [route, setRoute] = React.useState('home');
-  const [mode, setMode] = React.useState('team'); // 'team' | 'strategist'
+  const go = (r) => { setRoute(r); window.scrollTo({ top: 0, behavior: 'auto' }); };
 
-  const go = (r) => {
-    setRoute(r);
-    window.scrollTo({ top: 0, behavior: 'auto' });
-  };
+  // Pillar routes
+  if (route.startsWith('pillar-')) {
+    const pillarId = route.replace('pillar-', '');
+    return <PillarPage go={go} pillarId={pillarId} />;
+  }
 
-  const handleModeToggle = (newMode) => {
-    setMode(newMode);
-    window.ASPF_MODE = newMode;
-    // Switching to strategist goes to strategist page; back to team goes home
-    if (newMode === 'strategist' && route === 'home') go('home');
-    if (newMode === 'team' && route === 'strategist') go('home');
-  };
+  // Foundation
+  if (route === 'foundation') return <FoundationPage go={go} />;
 
-  const sharedProps = { go, mode, onModeToggle: handleModeToggle };
-
-  // Strategist page
-  if (route === 'strategist') return <StrategistPage {...sharedProps} />;
-
-  // Direct entry points — skip diagnostic picker
+  // Lifecycle entry points
   if (route === 'before')  return <StartPage go={go} entry="before" />;
   if (route === 'during')  return <StartPage go={go} entry="during" />;
   if (route === 'after')   return <StartPage go={go} entry="after" />;
-  // Guided diagnostic
   if (route === 'diagnose') return <StartPage go={go} entry={null} />;
+
   // Secondary pages
   if (route === 'skills')  return <SkillsPage go={go} />;
   if (route === 'agents')  return <AgentsPage go={go} />;
   if (route === 'tree')    return <DecisionTreePage go={go} />;
 
-  return <HomePage {...sharedProps} />;
+  return <HomePage go={go} />;
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
