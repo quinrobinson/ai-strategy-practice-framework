@@ -15,6 +15,15 @@ function DiscoveryPage({ go }) {
       duration: '20–30 min',
     },
     {
+      id: 'act15',
+      label: 'Act 1.5',
+      name: 'Stakeholder Interviews',
+      color: '#A78BFA',
+      desc: 'Individual 30-minute calls with key stakeholders before the group workshop. Surfaces what people won\'t say in a room together. When not possible, the framework generates role-based assumptions clearly labeled as such.',
+      output: 'Stakeholder Intelligence Brief — profiles, fault lines, workshop positioning',
+      duration: '30 min per stakeholder (recommended)',
+    },
+    {
       id: 'act2',
       label: 'Act 2',
       name: 'Workshop Facilitation',
@@ -209,9 +218,10 @@ Open questions: [What was unclear or contradictory]`;
         <div style={{ paddingTop: 36 }}>
           <div style={{ display: 'flex', gap: 2, marginBottom: 2 }}>
             {[
-              { id: 'act1', label: 'Act 1 — Prep', color: 'var(--brand-purple-soft)' },
-              { id: 'act2', label: 'Act 2 — Workshop', color: 'var(--entry-during)' },
-              { id: 'act3', label: 'Act 3 — Synthesis', color: 'var(--entry-before)' },
+              { id: 'act1',  label: 'Act 1 — Prep',                    color: 'var(--brand-purple-soft)' },
+              { id: 'act15', label: 'Act 1.5 — Stakeholder Interviews', color: '#A78BFA' },
+              { id: 'act2',  label: 'Act 2 — Workshop',                 color: 'var(--entry-during)' },
+              { id: 'act3',  label: 'Act 3 — Synthesis',                color: 'var(--entry-before)' },
             ].map(tab => {
               const isActive = activeAct === tab.id;
               return (
@@ -270,6 +280,75 @@ Open questions: [What was unclear or contradictory]`;
                   ))}
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Act 1.5 — Stakeholder Interviews */}
+          {activeAct === 'act15' && (
+            <div style={{ border: '1px solid color-mix(in srgb, #A78BFA 20%, var(--border))', borderRadius: '0 0 10px 10px', background: 'color-mix(in srgb, #A78BFA 3%, var(--card))', padding: '28px', borderTop: 'none' }}>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.65, marginBottom: 8, maxWidth: 640 }}>
+                Individual 30-minute calls with key stakeholders before the group workshop. Group sessions surface positions. Individual conversations surface truth. What people say privately — their real diagnosis, their actual fear, what they'll defend — changes everything about how you facilitate the workshop.
+              </p>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.65, marginBottom: 28, maxWidth: 640 }}>
+                When interviews aren't possible, the framework generates role-based assumptions clearly labeled as such. Either way, you walk in knowing the room.
+              </p>
+
+              {/* Three modes */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginBottom: 28 }}>
+                {[
+                  { mode: 'Mode A', label: 'Full Interviews', desc: '30-min individual calls with each key stakeholder. Practitioner feeds notes to ASPF. Full synthesis produced.', color: '#A78BFA' },
+                  { mode: 'Mode B', label: 'Partial Access', desc: 'Some stakeholders interviewed, others not. ASPF fills gaps with role-based assumptions, clearly flagged.', color: 'var(--entry-during)' },
+                  { mode: 'Mode C', label: 'No Access', desc: 'No interviews possible. ASPF generates a complete role-based hypothesis map from the brief alone. Everything labeled as assumed.', color: 'var(--fg-dim)' },
+                ].map(m => (
+                  <div key={m.mode} style={{ padding: '16px 18px', background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 7 }}>
+                    <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: m.color, marginBottom: 5 }}>{m.mode}</div>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 600, color: 'var(--fg)', marginBottom: 5 }}>{m.label}</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{m.desc}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Interview structure */}
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--fg-faint)', marginBottom: 12 }}>30-minute interview structure</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 2, marginBottom: 28 }}>
+                {[
+                  { block: 'Open', time: '2 min', desc: 'Set the frame — confidentiality signal, purpose of the call, not a pitch.' },
+                  { block: 'Block 1', time: '8 min', desc: 'Their view of the business problem — private diagnosis, not company line. What do they think most people get wrong?' },
+                  { block: 'Block 2', time: '8 min', desc: 'Their experience with technology and change — prior trauma, what they\'ll defend, what triggers resistance.' },
+                  { block: 'Block 3', time: '8 min', desc: 'Their stake in the outcome — what success and failure mean for them personally, not just organizationally.' },
+                  { block: 'Close', time: '4 min', desc: '"Is there anything you think we need to know that I haven\'t asked — or that won\'t come up in the group?" This produces the most valuable information in the call.' },
+                ].map(b => (
+                  <div key={b.block} style={{ display: 'grid', gridTemplateColumns: '64px 48px 1fr', gap: 14, padding: '12px 16px', background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 6, alignItems: 'start' }}>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: '#A78BFA', letterSpacing: '0.08em' }}>{b.block}</span>
+                    <span style={{ fontFamily: 'var(--font-mono)', fontSize: 10, color: 'var(--fg-faint)' }}>{b.time}</span>
+                    <span style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)', lineHeight: 1.5 }}>{b.desc}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Output */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2, marginBottom: 20 }}>
+                {[
+                  { label: 'Individual profiles', desc: 'Goals, concerns, private diagnosis, trust triggers, resistance triggers per stakeholder' },
+                  { label: 'Fault line map', desc: 'Where stakeholders genuinely disagree — named specifically, not generically' },
+                  { label: 'Workshop positioning', desc: 'Who to call on first, what to avoid, the thing nobody will say in the group' },
+                ].map(o => (
+                  <div key={o.label} style={{ padding: '14px 16px', background: 'var(--card)', border: '1px solid var(--border)', borderRadius: 7 }}>
+                    <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 600, color: '#A78BFA', marginBottom: 4 }}>{o.label}</div>
+                    <div style={{ fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--fg-muted)', lineHeight: 1.4 }}>{o.desc}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA */}
+              <div style={{ padding: '14px 16px', border: '1px solid color-mix(in srgb, #A78BFA 25%, var(--border))', borderRadius: 7, background: 'rgba(167,139,250,0.04)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
+                <div style={{ fontFamily: 'var(--font-body)', fontSize: 13, color: 'var(--fg-muted)' }}>
+                  Full interview guide, role-based assumption library, and output schema in <code style={{ fontFamily: 'var(--font-mono)', fontSize: 11, padding: '1px 5px', borderRadius: 3, background: 'var(--elevated)', border: '1px solid var(--border)' }}>stakeholder-interviews.md</code>
+                </div>
+                <a href="https://github.com/quinrobinson/ai-strategy-practice-framework/blob/main/skills/stakeholder-interviews.md" target="_blank" rel="noopener noreferrer" style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '8px 14px', borderRadius: 5, background: 'rgba(167,139,250,0.15)', color: '#A78BFA', border: '1px solid rgba(167,139,250,0.3)', textDecoration: 'none', display: 'inline-block', flexShrink: 0 }}>
+                  View skill file →
+                </a>
+              </div>
             </div>
           )}
 

@@ -64,6 +64,8 @@ Claude asks the practitioner what they already know. The practitioner answers. C
 
 ## Act 2: Workshop Facilitation Guide
 
+> **Before running the workshop:** If time permits, run stakeholder-interviews.md between Act 1 and Act 2. Individual 30-minute calls with key stakeholders before the group session surface what people won't say in a room together — and change how you facilitate everything that follows. When interviews aren't possible, the skill generates role-based assumptions clearly labeled as such. Either way, you walk in knowing the room.
+
 The practitioner runs this session with the client. Claude does not run this — the practitioner does. This guide is the output of Act 1 that the practitioner carries into the room.
 
 The workshop is structured around the six pillars. For each pillar, there is a current state probe, a gap probe, and a readiness probe. The practitioner uses these as a guide — not a script. The goal is to understand where the client is, not to audit them.
