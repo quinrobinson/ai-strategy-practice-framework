@@ -198,8 +198,10 @@ window.ASPF_DATA = {
       pillars: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
       isPrimary: true,
     },
+    {
+      id: 'problem-qualification',
+      file: 'problem-qualification.md',
       entryPoint: 'before',
-      goal: 'Go / No-go on using AI for this problem.',
       output: 'Problem Qualification Record — scored and documented.',
       unlocks: 'AI Method Selection.',
       desc: 'Determine whether a problem is worth solving with AI before committing any method or resource.',
