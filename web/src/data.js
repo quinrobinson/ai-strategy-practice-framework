@@ -177,7 +177,16 @@ window.ASPF_DATA = {
   // ── Skills ────────────────────────────────────────────────────────────────
   skills: [
     {
-      id: 'problem-qualification',
+      id: 'discovery',
+      file: 'discovery.md',
+      entryPoint: 'before',
+      goal: 'Where the client is across all six pillars, what the gaps are, and in what sequence the work should proceed.',
+      output: 'Master Client Brief — six-pillar assessment, gap analysis, prioritized roadmap, client communication points.',
+      unlocks: 'Every pillar engagement. No pillar work begins without a discovery brief.',
+      desc: 'Three-act discovery: prepare the practitioner, facilitate the workshop, synthesize findings into the master brief.',
+      pillars: ['p1', 'p2', 'p3', 'p4', 'p5', 'p6'],
+      isPrimary: true,
+    },
       file: 'problem-qualification.md',
       entryPoint: 'before',
       goal: 'Go / No-go on using AI for this problem.',
@@ -380,7 +389,8 @@ window.ASPF_DATA = {
 
   // ── Commands ──────────────────────────────────────────────────────────────
   commands: [
-    { cmd: '/project:diagnose', desc: 'Start a Before session — full decision tree from scratch.' },
+    { cmd: '/project:discover',  desc: 'Start a discovery session — prerequisite to all six pillar engagements.' },
+    { cmd: '/project:diagnose',  desc: 'Start a Before session — full decision tree from scratch.' },
     { cmd: '/project:audit',    desc: 'Start a During session — mid-engagement recalibration.' },
     { cmd: '/project:retro',    desc: 'Start an After session — retrospective evaluation.' },
     { cmd: '/project:predict',  desc: 'Run the Predictor standalone against current context.' },

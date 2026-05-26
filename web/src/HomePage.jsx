@@ -40,7 +40,43 @@ function HomePage({ go }) {
           </div>
         </div>
 
-        {/* Six pillars — primary navigation */}
+        {/* Discovery — primary entry point */}
+        <div style={{ paddingTop: 36, paddingBottom: 32, borderBottom: '1px solid var(--border)' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 32, alignItems: 'center', padding: '24px 28px', background: 'linear-gradient(135deg, rgba(134,59,255,0.08), rgba(233,129,12,0.06))', border: '1px solid rgba(134,59,255,0.2)', borderRadius: 10 }}>
+            <div>
+              <div style={{ fontFamily: 'var(--font-mono)', fontSize: 10, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--brand-purple-soft)', marginBottom: 8 }}>
+                ● Start here — prerequisite to all six pillars
+              </div>
+              <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 22, fontWeight: 600, lineHeight: 1.2, letterSpacing: '-0.01em', marginBottom: 8, color: 'var(--fg)' }}>
+                Discovery
+              </h2>
+              <p style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: 'var(--fg-muted)', lineHeight: 1.6, maxWidth: 600 }}>
+                Before any pillar work begins, run a structured discovery across all six pillars — prepare for the client conversation, facilitate the workshop, then synthesize findings into a Master Client Brief that scopes the full engagement.
+              </p>
+              <div style={{ display: 'flex', gap: 20, marginTop: 12 }}>
+                {[
+                  { step: 'Act 1', label: 'Pre-meeting prep', desc: 'Hypothesis map + facilitation guide' },
+                  { step: 'Act 2', label: 'Workshop', desc: 'Structured client discovery session' },
+                  { step: 'Act 3', label: 'Synthesis', desc: 'Brief + gap analysis + roadmap + deck' },
+                ].map((act, i) => (
+                  <div key={act.step} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                    {i > 0 && <span style={{ color: 'var(--fg-faint)', paddingTop: 2, fontFamily: 'var(--font-mono)', fontSize: 12 }}>→</span>}
+                    <div>
+                      <div style={{ fontFamily: 'var(--font-mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--brand-purple-soft)', marginBottom: 2 }}>{act.step}</div>
+                      <div style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 600, color: 'var(--fg)' }}>{act.label}</div>
+                      <div style={{ fontFamily: 'var(--font-body)', fontSize: 11, color: 'var(--fg-muted)' }}>{act.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <button onClick={() => go('discovery')} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, letterSpacing: '0.10em', textTransform: 'uppercase', padding: '12px 22px', borderRadius: 6, background: 'linear-gradient(135deg, rgba(134,59,255,0.28), rgba(233,129,12,0.20))', color: 'var(--fg)', border: '1px solid rgba(134,59,255,0.4)', cursor: 'pointer', whiteSpace: 'nowrap', boxShadow: '0 0 20px rgba(134,59,255,0.15)' }}>
+              Start a Discovery →
+            </button>
+          </div>
+        </div>
+
+        {/* Six pillars — delivery layer */}
         <div style={{ paddingTop: 32 }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6, 1fr)', gap: 2, marginBottom: 2 }}>
             {pillars.map(pillar => {
